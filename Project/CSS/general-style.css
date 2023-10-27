@@ -7,6 +7,7 @@ body {
     background-color: #1d1d2d;
     font-family: 'Roboto', sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -71,6 +72,35 @@ body {
 
 .navbar-toggle:hover {
     background-color: #00b270;
+}
+
+.head {
+    position: relative;
+    text-align: center;
+}
+
+.head-image {
+    width: 100%;
+    opacity: 0.5;
+}
+
+.head-titles {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    width: 100vw;
+    font-size: 3vw;
+    font-family: 'Cormorant SC', serif;
+}
+
+.head-text {
+    padding: 15px;
+    font-size: 1.15em;
+}
+
+.head-text p {
+    margin: 30px 0px;
 }
 
 .foot {
