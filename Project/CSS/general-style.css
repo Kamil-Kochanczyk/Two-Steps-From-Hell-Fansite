@@ -167,6 +167,10 @@ body {
         display: inline-block;
     }
 
+    .head-titles {
+        transform: translate(-50%, -50%);
+    }
+
     .foot-horizontal {
         flex-direction: column;
         align-items: center;
