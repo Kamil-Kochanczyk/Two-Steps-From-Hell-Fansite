@@ -75,8 +75,11 @@ body {
 }
 
 .head {
-    position: relative;
     text-align: center;
+}
+
+.head-container {
+    position: relative;
 }
 
 .head-image {
@@ -86,9 +89,9 @@ body {
 
 .head-titles {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -50%);
     width: 100vw;
     font-size: 3vw;
     font-family: 'Cormorant SC', serif;
@@ -100,7 +103,7 @@ body {
 }
 
 .head-text p {
-    margin: 30px 0px;
+    padding: 10px 0px;
 }
 
 .foot {
