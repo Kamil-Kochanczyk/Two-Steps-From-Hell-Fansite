@@ -45,7 +45,7 @@ body {
 }
 
 .navbar-links ul li:hover {
-    background-color: #40414f;
+    background-color: #00b270;
 }
 
 .navbar-links ul li a {
@@ -84,7 +84,7 @@ body {
 
 .head-image {
     width: 100%;
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 .head-titles {
@@ -95,15 +95,6 @@ body {
     width: 100vw;
     font-size: 3vw;
     font-family: 'Cormorant SC', serif;
-}
-
-.head-text {
-    padding: 15px;
-    font-size: 1.15em;
-}
-
-.head-text p {
-    padding: 10px 0px;
 }
 
 .foot {

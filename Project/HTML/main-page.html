@@ -5,22 +5,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/main-page.css">
     <title>Two Steps From Hell</title>
 </head>
 <body>
     <div class="navbar">
         <button id="navbar-toggle" class="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" class="navbar-logo" href="two-steps-from-hell.html">
+        <a id="navbar-logo" class="navbar-logo" href="main-page.html">
             <img src="../Images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links" class="navbar-links">
             <ul>
                 <li>
-                    <a href="./two-steps-from-hell.html">Home</a>
+                    <a href="./main-page.html">Home</a>
                 </li>
                 <li>
                     <a href="./founders.html">Founders</a>
@@ -40,41 +40,62 @@
                 <h3>MUSIC MAKES YOU BRAVER</h3>
             </div>
         </div>
-        <div class="head-text">
-            <p>Welcome to the website honoring the musical brilliance of Two Steps From Hell!</p>
-            <p>Founded by the legendary Thomas Bergersen and Nick Phoenix, Two Steps From Hell is the world's leading epic music producer.</p>
-        </div>
     </header>
-    <main>
+    <main class="main-page-content">
+        <section id="about-tsfh" class="main-page-section">
             <h3>About Two Steps From Hell</h3>
-            <blockquote cite="https://www.twostepsfromhell.com/">
-                <p>
-                "Two Steps From Hell was formed back in 2006 when Thomas Bergersen and Nick Phoenix joined forces to write original music for movie trailers.
-                13 years later, TSFH has been featured in hundreds of movie ads, including some of the biggest blockbusters of recent time, as well as thousands of TV ads and programmes.
-                TSFH released their first public album, Invincible, in 2009, establishing epic music as a new and unique musical genre.
-                There are now 14 public albums and millions of fans worldwide.
-                With their unmistakable and - in the best sense of the word - bombastic sound characterised by ancient chants, titles such as “Protectors of the Earth”, “Heart of Courage”, “Victory” and “Archangel” set the heartbeats of millions of fans racing and perfectly complement the (film) images they accompany."
-                </p>
-            </blockquote>
-            <p>(description from the official website)</p>
+            <div id="portraits-quote-container">
+                <div id="tb-np-container">
+                    <img src="../Images/tb.jpg" alt="TB">
+                    <img src="../Images/np.jpg" alt="NP">
+                </div>
+                <div id="tsfh-description-container">
+                    <blockquote cite="https://www.twostepsfromhell.com/">
+                        <p>
+                        "Two Steps From Hell was formed back in 2006 when Thomas Bergersen and Nick Phoenix joined forces to write original music for movie trailers.
+                        13 years later, TSFH has been featured in hundreds of movie ads, including some of the biggest blockbusters of recent time, as well as thousands of TV ads and programmes.
+                        TSFH released their first public album, Invincible, in 2009, establishing epic music as a new and unique musical genre.
+                        There are now 14 public albums and millions of fans worldwide.
+                        With their unmistakable and - in the best sense of the word - bombastic sound characterised by ancient chants, titles such as “Protectors of the Earth”, “Heart of Courage”, “Victory” and “Archangel” set the heartbeats of millions of fans racing and perfectly complement the (film) images they accompany."
+                        </p>
+                    </blockquote>
+                    <p>(description from the official website)</p>
+                </div>
+            </div>
         </section>
-        <section>
+        <section id="tsfh-live" class="main-page-section">
             <h3>Two Steps From Hell Live</h3>
-            <p>
-                Millions of streams worldwide, albums reaching chart peaks, countless views and followers on YouTube and other social media - Two Steps From Hell crowned their popularity by organizing in Europe their first ever tour.
-                In 2022 they visited many of the European cities and performed before thousands of people in the audience in each concert.
-                The tour was such a success that lead to the band doing one more European tour in 2023 and performing at Wacken Open Air festival, one of the biggest music festivals in the world.
-                Album containing live versions of their most popular tracks which were played at the concerts has also been released and features performances by Odesa Opera Orchestra and ReChoir, a professional Polish choir.
-            </p>
+            <div id="tsfh-live-gallery">
+                <img src="../Images/tsfh-live-1.jpg" alt="TSFH Live">
+                <img src="../Images/tsfh-live-2.jpg" alt="TSFH Live">
+                <img src="../Images/tsfh-live-3.jpg" alt="TSFH Live">
+                <img src="../Images/tsfh-live-4.jpg" alt="TSFH Live">
+            </div>
+            <div id="tsfh-live-description">
+                <p>
+                    Countless streams and followers, albums reaching chart peaks - Two Steps From Hell crowned their popularity by organizing in Europe their first ever tour.
+                    In 2022 they visited many of the European cities and performed before thousands of people in the audience in each concert.
+                    The tour was such a success that lead to the band doing one more European tour in 2023 and performing at Wacken Open Air festival, one of the biggest music festivals in the world.
+                    Album containing live versions of the tracks which were played at the concerts has also been released and features performances by Odesa Opera Orchestra and ReChoir, a professional Polish choir.
+                </p>
+            </div>
+            <div id="tsfh-live-album">
+                <h4>Listen on Spotify!</h4>
+                <img src="../Images/tsfh-live-album-cover.jpg" alt="TSFH Live Album Cover">
+                <a href="https://open.spotify.com/album/3TSyQXGRUFIOdq6MscHgdJ">Live - An Epic Music Experience</a>
+            </div>
         </section>
-        <section>
+        <section id="recent-music" class="main-page-section">
             <h3>Recent Music</h3>
             <p>
                 Latest album released by Two Steps From Hell is "Myth" which was released in 2022.
                 Thomas Bergersen and Nick Phoenix have also released recently several singles and solo albums which contain music from other music genres than what they usually write for Two Steps From Hell.
-                Check them out on YouTube, Spotify or other platforms!
                 It is confirmed that new music is coming soon so stay up to date to never miss anything!
             </p>
+            <div id="yt-container">
+                <iframe src="https://www.youtube.com/embed/79ILqbLye0s"></iframe>
+                <iframe src="https://www.youtube.com/embed/2QDT_fOAZ_4"></iframe>
+            </div>
         </section>
     </main>
     <footer class="foot">
@@ -83,7 +104,7 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="./two-steps-from-hell.html">Home</a>
+                        <a href="./main-page.html">Home</a>
                     </li>
                     <li>
                         <a href="./founders.html">Founders</a>
