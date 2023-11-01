@@ -1,5 +1,7 @@
 .main-page-content {
     text-align: center;
+    position: relative;
+    bottom: 4px;
 }
 
 .main-page-section {
@@ -13,6 +15,8 @@
 }
 
 #about-tsfh {
+    background-image: url(../Images/fire.jpg);
+    background-size: cover;
     background-color: black;
 }
 
@@ -94,10 +98,10 @@
 
 #recent-music {
     background-color: #1f303c;
+    position: relative;
 }
 
 #yt-container {
-    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -152,4 +156,12 @@ iframe {
         width: 350px;
         height: 225px;
     }
+}
+
+#filler {
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: -4px;
+    background-color: inherit;
 }
