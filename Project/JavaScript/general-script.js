@@ -1,6 +1,6 @@
 const showText = "Show menu";
 const hideText = "Hide menu";
-const widthLimit = 800;
+const widthLimit = 750;
 
 function toggleNavbar() {
     let button = document.getElementById("navbar-toggle");
