@@ -1,4 +1,24 @@
-.main-page-content {
+#main-header {
+    text-align: center;
+    position: relative;
+}
+
+#main-header-image {
+    width: 100%;
+    opacity: 0.9;
+}
+
+#main-header-titles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    font-size: 3vw;
+    font-family: 'Cormorant SC', serif;
+}
+
+main {
     text-align: center;
     position: relative;
     bottom: 4px;
@@ -12,7 +32,7 @@
     box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
 }
 
-.main-page-section h3 {
+.main-page-section > h3 {
     font-size: 3em;
     margin: 0;
     padding: 48px 0px;
@@ -28,7 +48,7 @@
     display: flex;
 }
 
-#portraits-quote-container div {
+#portraits-quote-container > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +59,7 @@
     width: 33%;
 }
 
-#tb-np-container img {
+#tb-np-container > img {
     width: 50%;
 }
 
@@ -47,7 +67,7 @@
     width: 67%;
 }
 
-#tsfh-description-container blockquote {
+#tsfh-description-container > blockquote {
     padding: 0px 50px;
     font-weight: bold;
     font-size: 1.33em;
@@ -60,12 +80,6 @@
     background-color: #252927;
 }
 
-#tsfh-live-description {
-    width: 90%;
-    margin: 0 auto;
-    line-height: 1.75;
-}
-
 #tsfh-live-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +87,7 @@
     box-shadow: 0 0 20px -7px white;
 }
 
-#tsfh-live-gallery img {
+#tsfh-live-gallery > img {
     width: 50%;
 }
 
@@ -83,15 +97,15 @@
     align-items: center;
 }
 
-#tsfh-live-album h4 {
+#tsfh-live-album > h4 {
     font-size: 1.5em;
 }
 
-#tsfh-live-album img {
+#tsfh-live-album > img {
     width: 25%;
 }
 
-#tsfh-live-album a {
+#tsfh-live-album > a {
     color: white;
     text-decoration: none;
     padding: 15px;
@@ -101,7 +115,7 @@
     font-size: 1.05em;
 }
 
-#tsfh-live-album a:hover {
+#tsfh-live-album > a:hover {
     background-color: #00b270;
 }
 
@@ -132,19 +146,13 @@ iframe {
         width: auto;
     }
 
-    #tsfh-live-gallery img {
+    #tsfh-live-gallery > img {
         width: 100%;
     }
 
-    #tsfh-live-album img {
+    #tsfh-live-album > img {
         width: 50%;
     }
-}
-
-#recent-music p {
-    width: 90%;
-    margin: 0 auto;
-    line-height: 1.75;
 }
 
 @media screen and (min-width: 750px) and (max-width: 1350px) {

@@ -38,7 +38,7 @@ function showHorizontalNavbarElements() {
     nav.classList.remove("hidden");
 }
 
-// Flag variable to track if the window size has crossed 700px width
+// Flag variable to track if the window size has crossed 750px width
 let isWithinLimitFlag = window.innerWidth <= widthLimit;
 
 // Function to handle changes in window size
@@ -46,14 +46,14 @@ function handleWindowSizeChange() {
     let windowWidth = window.innerWidth;
     let isWithinLimitNow = windowWidth <= widthLimit;
 
-    // Check if the window size has crossed 700px width
+    // Check if the window size has crossed 750px width
     if (isWithinLimitNow !== isWithinLimitFlag) {
         if (isWithinLimitNow) {
-            // Invoke your function when window width is less than or equal to 700px
+            // Invoke your function when window width is less than or equal to 750px
             hideVerticalNavbarElements();
         }
         else {
-            // Invoke another function when window width is greater than 700px
+            // Invoke another function when window width is greater than 750px
             showHorizontalNavbarElements();
         }
 

@@ -12,12 +12,12 @@
     <title>Two Steps From Hell</title>
 </head>
 <body>
-    <div class="navbar">
-        <button id="navbar-toggle" class="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" class="navbar-logo" href="main-page.html">
+    <div id="navbar-container">
+        <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
+        <a id="navbar-logo" href="main-page.html">
             <img src="../Images/tsfh-logo.jpg" alt="TSFH">
         </a>
-        <nav id="navbar-links" class="navbar-links">
+        <nav id="navbar-links">
             <ul>
                 <li>
                     <a href="./main-page.html">Home</a>
@@ -31,17 +31,15 @@
             </ul>
         </nav>
     </div>
-    <header class="head">
-        <div class="head-container">
-            <img class="head-image" src="../Images/tsfh-logo-header.jpeg" alt="2">
-            <div class="head-titles">
-                <h1>TWO STEPS FROM HELL</h1>
-                <h2>THOMAS BERGERSEN & NICK PHOENIX</h2>
-                <h3>MUSIC MAKES YOU BRAVER</h3>
-            </div>
+    <header id="main-header">
+        <img id="main-header-image" src="../Images/tsfh-logo-header.jpeg" alt="2">
+        <div id="main-header-titles">
+            <h1>TWO STEPS FROM HELL</h1>
+            <h2>THOMAS BERGERSEN & NICK PHOENIX</h2>
+            <h3>MUSIC MAKES YOU BRAVER</h3>
         </div>
     </header>
-    <main class="main-page-content">
+    <main>
         <section id="about-tsfh" class="main-page-section">
             <h3>About Two Steps From Hell</h3>
             <div id="portraits-quote-container">
@@ -65,8 +63,6 @@
         </section>
         <section id="tsfh-live" class="main-page-section">
             <h3>Two Steps From Hell Live</h3>
-            <div id="tsfh-live-description">
-            </div>
             <div id="tsfh-live-gallery">
                 <img src="../Images/tsfh-live-1.jpg" alt="TSFH Live">
                 <img src="../Images/tsfh-live-2.jpg" alt="TSFH Live">
@@ -87,19 +83,19 @@
             </div>
         </section>
     </main>
-    <footer class="foot">
-        <div class="foot-horizontal">
+    <footer id="main-footer">
+        <div id="main-footer-links">
             <div>
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="./main-page.html">Home</a>
+                        <a class="main-footer-link" href="./main-page.html">Home</a>
                     </li>
                     <li>
-                        <a href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders.html">Founders</a>
                     </li>
                     <li>
-                        <a href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums.html">Albums</a>
                     </li>
                 </ul>
             </div>
@@ -107,19 +103,19 @@
                 <h4>Useful Links</h4>
                 <ul>
                     <li>
-                        <a href="https://www.twostepsfromhell.com/">Official Website</a>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/">Official Website</a>
                     </li>
                     <li>
-                        <a href="https://www.thomasbergersen.com/">Thomas Bergersen</a>
+                        <a class="main-footer-link" href="https://www.thomasbergersen.com/">Thomas Bergersen</a>
                     </li>
                     <li>
-                        <a href="https://nickphoenix.com/">Nick Phoenix</a>
+                        <a class="main-footer-link" href="https://nickphoenix.com/">Nick Phoenix</a>
                     </li>
                     <li>
-                        <a href="https://www.twostepsfromhell.com/live/">Two Steps From Hell Live</a>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/live/">Two Steps From Hell Live</a>
                     </li>
                     <li>
-                        <a href="https://twostepsfromhellstore.com/">Official Merchandise</a>
+                        <a class="main-footer-link" href="https://twostepsfromhellstore.com/">Official Merchandise</a>
                     </li>
                 </ul>
             </div>
@@ -128,28 +124,28 @@
                 <ul>
                     <li>
                         <a href="https://www.youtube.com/@TwoStepsFromHell-Official" class="fa fa-youtube"></a>
-                        <a href="https://www.youtube.com/@TwoStepsFromHell-Official">Two Steps From Hell</a>
+                        <a class="main-footer-link" href="https://www.youtube.com/@TwoStepsFromHell-Official">Two Steps From Hell</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/twostepsfromhell/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/twostepsfromhell/">Two Steps From Hell</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/twostepsfromhell/">Two Steps From Hell</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/thomasbergersen/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/thomasbergersen/">Thomas Bergersen</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/thomasbergersen/">Thomas Bergersen</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/nickphoenixartist/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/nickphoenixartist/">Nick Phoenix</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/nickphoenixartist/">Nick Phoenix</a>
                     </li>
                 </ul>
             </div>
             <div>
                 <h4>Contact Me</h4>
-                <p><a href="mailto:k.kochanczyk@student.uj.edu.pl">k.kochanczyk@student.uj.edu.pl</a></p>
+                <p><a class="main-footer-link" href="mailto:k.kochanczyk@student.uj.edu.pl">k.kochanczyk@student.uj.edu.pl</a></p>
             </div>
         </div>
-        <div class="foot-copyright">
+        <div id="main-footer-copyright">
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>

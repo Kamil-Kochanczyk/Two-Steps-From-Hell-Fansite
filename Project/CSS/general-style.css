@@ -10,7 +10,7 @@ body {
     overflow-x: hidden;
 }
 
-.navbar {
+#navbar-container {
     background-color: #060728;
     position: sticky;
     top: 0;
@@ -21,21 +21,21 @@ body {
     height: 66px;
 }
 
-.navbar-logo {
+#navbar-logo {
     padding: 5px;
     height: 100%;
 }
 
-.navbar-logo img {
+#navbar-logo img {
     height: 100%;
     border-radius: 50%;
 }
 
-.navbar-links {
+#navbar-links {
     height: 100%;
 }
 
-.navbar-links ul {
+#navbar-links ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -43,21 +43,21 @@ body {
     height: 100%;
 }
 
-.navbar-links ul li:hover {
+#navbar-links ul li:hover {
     background-color: #00b270;
 }
 
-.navbar-links ul li a {
+#navbar-links ul li a {
     color: white;
     text-decoration: none;
     padding: 14px 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     height: 100%;
 }
 
-.navbar-toggle {
+#navbar-toggle {
     display: none;
     color: white;
     background-color: transparent;
@@ -69,122 +69,100 @@ body {
     font-size: 1.05em;
 }
 
-.navbar-toggle:hover {
+#navbar-toggle:hover {
     background-color: #00b270;
 }
 
-.head {
-    text-align: center;
-}
-
-.head-container {
-    position: relative;
-}
-
-.head-image {
-    width: 100%;
-    opacity: 0.9;
-}
-
-.head-titles {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    font-size: 3vw;
-    font-family: 'Cormorant SC', serif;
-}
-
-.foot {
+#main-footer {
     background-image: linear-gradient(0deg, black, #191911);
-    background-color: #19191e;
+    background-color: #191911;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.foot-horizontal {
+#main-footer-links {
     padding-bottom: 45px;
     display: flex;
     border-bottom: 1px solid #686868;
 }
 
-.foot-horizontal div {
+#main-footer-links div {
     padding: 15px 30px;
 }
 
-.foot-horizontal div ul {
+#main-footer-links div ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.foot-horizontal a {
-    font-weight: bolder;
-    text-decoration: none;
-    font-size: smaller;
+#main-footer-links div ul li {
     white-space: nowrap;
 }
 
-.foot-horizontal a:link, .foot-horizontal a:visited {
+.main-footer-link {
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: smaller;
+}
+
+.main-footer-link:link, .main-footer-link:visited {
     color: #4083b2;
 }
 
-.foot-horizontal a:hover {
+.main-footer-link:hover {
     color: #00b270;
 }
 
-.foot-copyright {
+#main-footer-copyright {
     padding: 10px;
     text-align: center;
 }
 
 @media screen and (max-width: 750px) {
-    .navbar, .navbar-links ul {   
+    #navbar-container, #navbar-links ul {
       flex-direction: column;
     }
 
-    .navbar {
+    #navbar-container {
         height: auto;
     }
 
-    .navbar-logo {
+    #navbar-logo {
         height: 66px;
     }
 
-    .navbar-links ul li {
+    #navbar-links ul li {
         width: 100vw;
     }
 
-    .navbar-toggle {
+    #navbar-toggle {
         display: inline-block;
     }
+}
 
-    .head-titles {
-        transform: translate(-50%, -50%);
-    }
-
-    .foot-horizontal {
+@media screen and (max-width: 800px) {
+    #main-footer-links {
         flex-direction: column;
         align-items: center;
         font-size: larger;
         border-bottom: none;
     }
 
-    .foot-horizontal div {
+    #main-footer-links div {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .foot-horizontal div ul {
+    #main-footer-links div ul {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .foot-copyright {
+    #main-footer-copyright {
         border-top: 1px solid #686868;
     }
 }
@@ -195,18 +173,15 @@ body {
 
 .fa {
     margin: 3px;
-    font-weight: normal !important;
-    font-size: 1.2em !important;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1.2em;
 }
 
 .fa:hover {
-    color: #00b270 !important;
+    color: #00b270;
 }
 
-.fa-facebook {
-    color: white !important;
-}
-  
-.fa-youtube {
-    color: white !important;
+.fa-facebook, .fa-youtube {
+    color: white;
 }
