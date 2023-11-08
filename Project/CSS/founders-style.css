@@ -1,0 +1,96 @@
+main {
+    width: 95%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+hr {
+    border: 1px solid #5d5d5d;
+}
+
+main > section {
+    padding: 10px;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+.quote-image-container img {
+    width: 400px;
+    margin: 20px;
+    float: right;
+}
+
+.quote-image-container > blockquote {
+    margin: 0;
+    font-size: larger;
+    line-height: 2;
+}
+
+.links-container {
+    margin: 23.240px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.official-website-link {
+    color: #358dcb;
+    text-decoration: none;
+    font-size: 1.75em;
+    padding: 10px 0px;
+}
+
+.official-website-link:hover {
+    color: #00b270;
+}
+
+.first-letter {
+    float: left;
+    width: 0.7em;
+    font-family: algerian, courier;
+    font-size: 500%;
+    line-height: 80%;
+}
+
+.social-media-links-container .fa {
+    color: white;
+    font-size: 1.75em;
+    text-align: center;
+    width: 50px;
+    padding: 10px;
+}
+
+.social-media-links-container .fa:hover {
+    opacity: 0.7;
+}
+
+.social-media-links-container .fa-youtube {
+    background-color: #ff0000;
+}
+
+.social-media-links-container .fa-facebook {
+    background-color: #1877f2;
+}
+
+.social-media-links-container .fa-spotify {
+    background-color: #1db954;
+}
+
+@media screen and (max-width: 700px) {
+    .quote-image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quote-image-container img {
+        width: 75%;
+        margin: 0;
+        float: none;
+    }
+}
