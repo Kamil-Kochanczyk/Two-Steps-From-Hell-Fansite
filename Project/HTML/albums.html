@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/albums-style.css">
     <title>Albums</title>
 </head>
 <body>
-    <div class="navbar">
-        <button id="navbar-toggle" class="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" class="navbar-logo" href="main-page.html">
+    <div id="navbar-container">
+        <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
+        <a id="navbar-logo" href="main-page.html">
             <img src="../Images/tsfh-logo.jpg" alt="TSFH">
         </a>
-        <nav id="navbar-links" class="navbar-links">
+        <nav id="navbar-links">
             <ul>
                 <li>
                     <a href="./main-page.html">Home</a>
@@ -28,19 +30,109 @@
             </ul>
         </nav>
     </div>
-    <footer class="foot">
-        <div class="foot-horizontal">
+    <main>
+        <h1>Albums</h1>
+        <section id="album-gallery">
+            <div id="col1" class="gallery-column">
+                <div id="invincible" class="album-cover-container">
+                    <img src="../Images/invincible.jpg" alt="Invincible">
+                    <div class="middle">
+                        <h2>Invincible</h2>
+                        <a href="https://open.spotify.com/album/0zOdkaCbYN1B42zw8TUYlY" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="miracles" class="album-cover-container">
+                    <img src="../Images/miracles.jpg" alt="Miracles">
+                    <div class="middle">
+                        <h2>Miracles</h2>
+                        <a href="https://open.spotify.com/album/4wI5C041sDGltcKoh1fOz7" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="unleashed" class="album-cover-container">
+                    <img src="../Images/unleashed.png" alt="Unleashed">
+                    <div class="middle">
+                        <h2>Unleashed</h2>
+                        <a href="https://open.spotify.com/album/6G0POeSml1dY0l8SuvhY6s" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="col2" class="gallery-column">
+                <div id="archangel" class="album-cover-container">
+                    <img src="../Images/archangel.jpg" alt="Archangel">
+                    <div class="middle">
+                        <h2>Archangel</h2>
+                        <a href="https://open.spotify.com/album/1TVpHhBK3pSTqizgLLh16s" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="battlecry" class="album-cover-container">
+                    <img src="../Images/battlecry.jpg" alt="Battlecry">
+                    <div class="middle">
+                        <h2>Battlecry</h2>
+                        <a href="https://open.spotify.com/album/4y7T04fej3MJ8tAe2FeKD5" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="dragon" class="album-cover-container">
+                    <img src="../Images/dragon.png" alt="Dragon">
+                    <div class="middle">
+                        <h2>Dragon</h2>
+                        <a href="https://open.spotify.com/album/7I5PK0V1gvLsAkpDJbjfqJ" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="col3" class="gallery-column">
+                <div id="skyworld" class="album-cover-container">
+                    <img src="../Images/skyworld.jpg" alt="Skyworld">
+                    <div class="middle">
+                        <h2>Skyworld</h2>
+                        <a href="https://open.spotify.com/album/01w0dp5OVOgviPw2HHXB3M" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="classics-volume-2" class="album-cover-container">
+                    <img src="../Images/classics-volume-2.jpg" alt="Classics Volume 2">
+                    <div class="middle">
+                        <h2>Classics Volume 2</h2>
+                        <a href="https://open.spotify.com/album/5aQcKqRbuee5MP8TnHGHTK" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="myth" class="album-cover-container">
+                    <img src="../Images/myth.png" alt="Myth">
+                    <div class="middle">
+                        <h2>Myth</h2>
+                        <a href="https://open.spotify.com/album/5iZq2XooveQg7ZgfxN9oS9" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+            </div>
+            <div id="col4" class="gallery-column">
+                <div id="classics-volume-1" class="album-cover-container">
+                    <img src="../Images/classics-volume-1.jpg" alt="Classics Volume 1">
+                    <div class="middle">
+                        <h2>Classics Volume 1</h2>
+                        <a href="https://open.spotify.com/album/6X1BVrP7yJJnpRBncnGIB5" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+                <div id="vanquish" class="album-cover-container">
+                    <img src="../Images/vanquish.jpg" alt="Vanquish">
+                    <div class="middle">
+                        <h2>Vanquish</h2>
+                        <a href="https://open.spotify.com/album/4LTuRCaAMbtmkuiG808J48" class="fa fa-spotify"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="main-footer">
+        <div id="main-footer-links">
             <div>
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a href="./main-page.html">Home</a>
+                        <a class="main-footer-link" href="./main-page.html">Home</a>
                     </li>
                     <li>
-                        <a href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders.html">Founders</a>
                     </li>
                     <li>
-                        <a href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums.html">Albums</a>
                     </li>
                 </ul>
             </div>
@@ -48,19 +140,19 @@
                 <h4>Useful Links</h4>
                 <ul>
                     <li>
-                        <a href="https://www.twostepsfromhell.com/">Official Website</a>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/">Official Website</a>
                     </li>
                     <li>
-                        <a href="https://www.thomasbergersen.com/">Thomas Bergersen</a>
+                        <a class="main-footer-link" href="https://www.thomasbergersen.com/">Thomas Bergersen</a>
                     </li>
                     <li>
-                        <a href="https://nickphoenix.com/">Nick Phoenix</a>
+                        <a class="main-footer-link" href="https://nickphoenix.com/">Nick Phoenix</a>
                     </li>
                     <li>
-                        <a href="https://www.twostepsfromhell.com/live/">Two Steps From Hell Live</a>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/live/">Two Steps From Hell Live</a>
                     </li>
                     <li>
-                        <a href="https://twostepsfromhellstore.com/">Official Merchandise</a>
+                        <a class="main-footer-link" href="https://twostepsfromhellstore.com/">Official Merchandise</a>
                     </li>
                 </ul>
             </div>
@@ -69,31 +161,32 @@
                 <ul>
                     <li>
                         <a href="https://www.youtube.com/@TwoStepsFromHell-Official" class="fa fa-youtube"></a>
-                        <a href="https://www.youtube.com/@TwoStepsFromHell-Official">Two Steps From Hell</a>
+                        <a class="main-footer-link" href="https://www.youtube.com/@TwoStepsFromHell-Official">Two Steps From Hell</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/twostepsfromhell/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/twostepsfromhell/">Two Steps From Hell</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/twostepsfromhell/">Two Steps From Hell</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/thomasbergersen/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/thomasbergersen/">Thomas Bergersen</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/thomasbergersen/">Thomas Bergersen</a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/nickphoenixartist/" class="fa fa-facebook"></a>
-                        <a href="https://www.facebook.com/nickphoenixartist/">Nick Phoenix</a>
+                        <a class="main-footer-link" href="https://www.facebook.com/nickphoenixartist/">Nick Phoenix</a>
                     </li>
                 </ul>
             </div>
             <div>
                 <h4>Contact Me</h4>
-                <p><a href="mailto:k.kochanczyk@student.uj.edu.pl">k.kochanczyk@student.uj.edu.pl</a></p>
+                <p><a class="main-footer-link" href="mailto:k.kochanczyk@student.uj.edu.pl">k.kochanczyk@student.uj.edu.pl</a></p>
             </div>
         </div>
-        <div class="foot-copyright">
+        <div id="main-footer-copyright">
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>
     <script src="../JavaScript/general-script.js"></script>
+    <script src="../JavaScript/albums-script.js"></script>
 </body>
 </html>
