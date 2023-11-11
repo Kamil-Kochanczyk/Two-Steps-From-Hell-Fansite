@@ -74,8 +74,8 @@ body {
 }
 
 #main-footer {
-    background-image: linear-gradient(0deg, black, #191911);
-    background-color: #191911;
+    background-image: linear-gradient(0deg, black, #111519);
+    background-color: #111419;
     display: flex;
     flex-direction: column;
     align-items: center;
