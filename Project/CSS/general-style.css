@@ -150,13 +150,7 @@ body {
         border-bottom: none;
     }
 
-    #main-footer-links div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #main-footer-links div ul {
+    #main-footer-links div, #main-footer-links div ul {
         display: flex;
         flex-direction: column;
         align-items: center;
