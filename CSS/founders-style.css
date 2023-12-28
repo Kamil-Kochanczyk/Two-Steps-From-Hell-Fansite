@@ -1,6 +1,5 @@
 main {
     width: 95%;
-    margin: 0 auto;
 }
 
 h1 {
@@ -39,14 +38,17 @@ h2 {
 }
 
 .official-website-link {
-    color: #358dcb;
+    color: white;
     text-decoration: none;
-    font-size: 1.75em;
-    padding: 10px 0px;
+    padding: 15px;
+    border: 1px solid #686868;
+    border-radius: 10px;
+    font-size: 1.05em;
+    margin-bottom: 10px;
 }
 
 .official-website-link:hover {
-    color: #00b270;
+    background-color: #00b270;
 }
 
 .first-letter {
@@ -81,6 +83,10 @@ h2 {
     background-color: #1db954;
 }
 
+.description-span {
+    font-size: small;
+}
+
 @media screen and (max-width: 700px) {
     .quote-image-container {
         display: flex;
@@ -92,5 +98,11 @@ h2 {
         width: 75%;
         margin: 0;
         float: none;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .quote-image-container img {
+        width: 95%;
     }
 }
