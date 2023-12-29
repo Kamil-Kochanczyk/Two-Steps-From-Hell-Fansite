@@ -27,7 +27,8 @@ h2 {
 .quote-image-container > blockquote {
     margin: 0;
     font-size: larger;
-    line-height: 2;
+    line-height: 2.11;
+    text-align: justify;
 }
 
 .links-container {
