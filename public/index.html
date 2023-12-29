@@ -8,35 +8,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/index-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/index-style.css">
+    <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
     <title>Two Steps From Hell</title>
 </head>
 <body>
     <div id="navbar-container">
         <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" href="index.html">
-            <img src="../Images/tsfh-logo.jpg" alt="TSFH">
+        <a id="navbar-logo" href="./">
+            <img src="./Images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links">
             <ul>
                 <li>
-                    <a href="./index.html">Home</a>
+                    <a href="./">Home</a>
                 </li>
                 <li>
-                    <a href="./founders.html">Founders</a>
+                    <a href="./founders">Founders</a>
                 </li>
                 <li>
-                    <a href="./albums.html">Albums</a>
+                    <a href="./albums">Albums</a>
                 </li>
                 <li>
-                    <a href="./news.html">News</a>
+                    <a href="./news">News</a>
                 </li>
             </ul>
         </nav>
+        <div id="user-options-container">
+            <div id="nav-dropdown" style="display: none;">
+                <div id="avatar-container">
+                    <img src="./Images/avatar-placeholder.jpg" alt="avatar">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div id="nav-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+            <div id="user-init-links">
+                <a id="login" href="./log-in">Log In</a>
+                <a id="signup" href="./sing-up">Sign Up</a>
+            </div>
+        </div>
     </div>
     <header id="main-header">
-        <img id="main-header-image" src="../Images/tsfh-logo-header.jpeg" alt="2">
+        <img id="main-header-image" src="./Images/tsfh-logo-header.jpeg" alt="2">
         <div id="main-header-titles">
             <h1>TWO STEPS FROM HELL</h1>
             <h2>THOMAS BERGERSEN & NICK PHOENIX</h2>
@@ -48,8 +65,8 @@
             <h3>About Two Steps From Hell</h3>
             <div id="portraits-quote-container">
                 <div id="tb-np-container">
-                    <img src="../Images/tb.jpg" alt="TB">
-                    <img src="../Images/np.jpg" alt="NP">
+                    <img src="./Images/tb.jpg" alt="TB">
+                    <img src="./Images/np.jpg" alt="NP">
                 </div>
                 <div id="tsfh-description-container">
                     <blockquote cite="https://www.twostepsfromhell.com/">
@@ -68,14 +85,14 @@
         <section id="tsfh-live" class="main-page-section">
             <h3>Two Steps From Hell Live</h3>
             <div id="tsfh-live-gallery">
-                <img src="../Images/tsfh-live-1.jpg" alt="TSFH Live">
-                <img src="../Images/tsfh-live-2.jpg" alt="TSFH Live">
-                <img src="../Images/tsfh-live-3.jpg" alt="TSFH Live">
-                <img src="../Images/tsfh-live-4.jpg" alt="TSFH Live">
+                <img src="./Images/tsfh-live-1.jpg" alt="TSFH Live">
+                <img src="./Images/tsfh-live-2.jpg" alt="TSFH Live">
+                <img src="./Images/tsfh-live-3.jpg" alt="TSFH Live">
+                <img src="./Images/tsfh-live-4.jpg" alt="TSFH Live">
             </div>
             <div id="tsfh-live-album">
                 <h4>Listen on Spotify!</h4>
-                <img src="../Images/tsfh-live-album-cover.jpg" alt="TSFH Live Album Cover">
+                <img src="./Images/tsfh-live-album-cover.jpg" alt="TSFH Live Album Cover">
                 <a href="https://open.spotify.com/album/3TSyQXGRUFIOdq6MscHgdJ">Live - An Epic Music Experience</a>
             </div>
         </section>
@@ -93,16 +110,16 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a class="main-footer-link" href="./index.html">Home</a>
+                        <a class="main-footer-link" href="./">Home</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders">Founders</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums">Albums</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./news.html">News</a>
+                        <a class="main-footer-link" href="./news">News</a>
                     </li>
                 </ul>
             </div>
@@ -156,6 +173,6 @@
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>
-    <script src="../JavaScript/general-script.js"></script>
+    <script src="./JavaScript/general-script.js"></script>
 </body>
 </html>

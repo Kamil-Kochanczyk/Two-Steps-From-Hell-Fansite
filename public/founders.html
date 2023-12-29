@@ -7,32 +7,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/founders-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/founders-style.css">
+    <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
     <title>Founders</title>
 </head>
 <body>
     <div id="navbar-container">
         <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" href="index.html">
-            <img src="../Images/tsfh-logo.jpg" alt="TSFH">
+        <a id="navbar-logo" href="./">
+            <img src="./Images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links">
             <ul>
                 <li>
-                    <a href="./index.html">Home</a>
+                    <a href="./">Home</a>
                 </li>
                 <li>
-                    <a href="./founders.html">Founders</a>
+                    <a href="./founders">Founders</a>
                 </li>
                 <li>
-                    <a href="./albums.html">Albums</a>
+                    <a href="./albums">Albums</a>
                 </li>
                 <li>
-                    <a href="./news.html">News</a>
+                    <a href="./news">News</a>
                 </li>
             </ul>
         </nav>
+        <div id="user-options-container">
+            <div id="nav-dropdown">
+                <div id="avatar-container">
+                    <img src="./Images/avatar-placeholder.jpg" alt="avatar">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div id="nav-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+            <div id="user-init-links" style="display: none;">
+                <a id="login" href="./log-in">Log In</a>
+                <a id="signup" href="./sing-up">Sign Up</a>
+            </div>
+        </div>
     </div>
     <main>
         <h1>Founders of Two Steps From Hell</h1>
@@ -41,7 +58,7 @@
             <h2>Thomas Bergersen</h2>
             <div class="description-container">
                 <div class="quote-image-container">
-                    <img src="../Images/tb-violin.jpg" alt="Thomas Bergersen">
+                    <img src="./Images/tb-violin.jpg" alt="Thomas Bergersen">
                     <blockquote cite="https://www.twostepsfromhell.com/">
                         <p>
                             <span class="first-letter">T</span>homas Bergersen was born in a small town in Norway and has spent his whole life living and breathing music.
@@ -71,7 +88,7 @@
             <h2>Nick Phoenix</h2>
             <div class="description-container">
                 <div class="quote-image-container">
-                    <img src="../Images/np-bass.jpg" alt="Nick Phoenix">
+                    <img src="./Images/np-bass.jpg" alt="Nick Phoenix">
                     <blockquote cite="https://www.twostepsfromhell.com/">
                         <p>
                             <span class="first-letter">N</span>ick Phoenix has had a unique journey as a song writer, singer and composer.
@@ -107,16 +124,16 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a class="main-footer-link" href="./index.html">Home</a>
+                        <a class="main-footer-link" href="./">Home</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders">Founders</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums">Albums</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./news.html">News</a>
+                        <a class="main-footer-link" href="./news">News</a>
                     </li>
                 </ul>
             </div>
@@ -170,6 +187,6 @@
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>
-    <script src="../JavaScript/general-script.js"></script>
+    <script src="./JavaScript/general-script.js"></script>
 </body>
 </html>

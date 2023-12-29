@@ -5,85 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/news-style.css">
-    <title>News</title>
+    <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/log-in-style.css">
+    <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
+    <title>Log In</title>
 </head>
 <body>
     <div id="navbar-container">
         <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" href="index.html">
-            <img src="../Images/tsfh-logo.jpg" alt="TSFH">
+        <a id="navbar-logo" href="./">
+            <img src="./Images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links">
             <ul>
                 <li>
-                    <a href="./index.html">Home</a>
+                    <a href="./">Home</a>
                 </li>
                 <li>
-                    <a href="./founders.html">Founders</a>
+                    <a href="./founders">Founders</a>
                 </li>
                 <li>
-                    <a href="./albums.html">Albums</a>
+                    <a href="./albums">Albums</a>
                 </li>
                 <li>
-                    <a href="./news.html">News</a>
+                    <a href="./news">News</a>
                 </li>
             </ul>
         </nav>
+        <div id="user-options-container">
+            <div id="nav-dropdown">
+                <div id="avatar-container">
+                    <img src="./Images/avatar-placeholder.jpg" alt="avatar">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div id="nav-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+            <div id="user-init-links" style="display: none;">
+                <a id="login" href="./log-in">Log In</a>
+                <a id="signup" href="./sing-up">Sign Up</a>
+            </div>
+        </div>
     </div>
     <main>
-        <h1>Latest news</h1>
-        <hr>
-        <article id="bloom">
-            <h2>"Bloom"</h2>
-            <h3>New single by Thomas Bergersen</h3>
-            <h4>10.11.2023</h4>
-            <hr>
-            <p>
-                <cite>Bloom</cite>, a new single by Thomas Bergersen, was released on November 10, 2023.
-                It is a song about the feeling that you have when you are next to the person you love.
-                It features the voice of Thomas Bergersen himself.
-            </p>
-            <p>
-                Listen on Spotify: <a href="https://open.spotify.com/album/5PenbQsxKoTkKqLxsVMkwO">Bloom</a>
-            </p>
-            <img class="cover" src="../Images/bloom.jpg" alt="Bloom">
-        </article>
-        <hr>
-        <article id="rock-the-lightning">
-            <h2>"Rock The Lightning"</h2>
-            <h3>New single by Nick Phoenix</h3>
-            <h4>10.11.2023</h4>
-            <hr>
-            <p>
-                <cite>Rock the Lightning</cite> is a new rock single by Nick Phoenix.
-                It was released on November 10, 2023.
-                Nick Phoenix also confirmed that he plans to make a music video for this song in the future.
-            </p>
-            <p>
-                Listen on Spotify: <a href="https://open.spotify.com/album/69Q78JxW24cPD0Z00i7KRu">Rock The Lightning</a>
-            </p>
-            <img class="cover" src="../Images/rock-the-lightning.jpg">
-        </article>
-        <hr>
-        <article id="am-i-real">
-            <h2>"Am I Real"</h2>
-            <h3>New single by Thomas Bergersen</h3>
-            <h4>13.10.2023</h4>
-            <hr>
-            <p>
-                <cite>Am I Real</cite>, Thomas Bergersen's new single, was realeased on October 13, 2023.
-                It was made in collaboration with Boom Jinx, a Norwegian music producer and DJ.
-                Video for this song is accompanied by a fictional story.
-            </p>
-            <p>
-                Listen on YouTube: <a href="https://www.youtube.com/watch?v=ydpYtQxkP3E">Am I Real</a>
-            </p>
-            <img class="cover" src="../Images/am-i-real.jpg">
-        </article>
+        <h1>Log In</h1>
+        <form method="post">
+            <div class="form-field-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-field-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div id="forgot-password">Forgot password?</div>
+            </div>
+            <div class="form-field-container">
+                <button id="submit-button" type="submit">Log In</button>
+            </div>
+        </form>
     </main>
     <footer id="main-footer">
         <div id="main-footer-links">
@@ -91,16 +75,16 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a class="main-footer-link" href="./index.html">Home</a>
+                        <a class="main-footer-link" href="./">Home</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders">Founders</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums">Albums</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./news.html">News</a>
+                        <a class="main-footer-link" href="./news">News</a>
                     </li>
                 </ul>
             </div>
@@ -154,6 +138,6 @@
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>
-    <script src="../JavaScript/general-script.js"></script>
+    <script src="./JavaScript/general-script.js"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ main {
 #navbar-container {
     background-color: #060728;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: 66px;
 }
@@ -45,11 +45,11 @@ main {
     height: 100%;
 }
 
-#navbar-links ul li:hover {
+#navbar-links ul li:hover, #user-options-container a:hover {
     background-color: #00b270;
 }
 
-#navbar-links ul li a {
+#navbar-links ul li a, #user-options-container a {
     color: white;
     text-decoration: none;
     padding: 14px 20px;
@@ -73,6 +73,34 @@ main {
 
 #navbar-toggle:hover {
     background-color: #00b270;
+}
+
+#user-options-container, #user-init-links {
+    height: 100%;
+    display: flex;
+}
+
+#nav-dropdown {
+    height: 100%;
+}
+
+#avatar-container {
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#avatar-container img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+#nav-dropdown-content {
+    display: none;
+    background-color: #060728;
+    position: absolute;
+    z-index: 10;
 }
 
 #main-footer {
@@ -142,7 +170,7 @@ main {
 }
 
 @media screen and (max-width: 750px) {
-    #navbar-container, #navbar-links ul {
+    #navbar-container, #navbar-links ul, #user-options-container, #user-init-links {
       flex-direction: column;
     }
 
@@ -150,11 +178,15 @@ main {
         height: auto;
     }
 
-    #navbar-logo {
+    #navbar-logo, #avatar-container {
         height: 66px;
     }
 
-    #navbar-links ul li {
+    #avatar-container {
+        justify-content: center;
+    }
+
+    #navbar-links ul li, #user-options-container, #user-init-links, #nav-dropdown-content {
         width: 100vw;
     }
 
@@ -178,7 +210,11 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.show-block {
+    display: block !important;
 }
 
 .fa {
@@ -188,7 +224,7 @@ main {
     font-size: 1.2em;
 }
 
-.fa:hover {
+.fa:hover, #nav-dropdown:hover .fa {
     color: #00b270;
 }
 

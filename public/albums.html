@@ -7,53 +7,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/general-style.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/albums-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/albums-style.css">
+    <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
     <title>Albums</title>
 </head>
 <body>
     <div id="navbar-container">
         <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" href="index.html">
-            <img src="../Images/tsfh-logo.jpg" alt="TSFH">
+        <a id="navbar-logo" href="./">
+            <img src="./Images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links">
             <ul>
                 <li>
-                    <a href="./index.html">Home</a>
+                    <a href="./">Home</a>
                 </li>
                 <li>
-                    <a href="./founders.html">Founders</a>
+                    <a href="./founders">Founders</a>
                 </li>
                 <li>
-                    <a href="./albums.html">Albums</a>
+                    <a href="./albums">Albums</a>
                 </li>
                 <li>
-                    <a href="./news.html">News</a>
+                    <a href="./news">News</a>
                 </li>
             </ul>
         </nav>
+        <div id="user-options-container">
+            <div id="nav-dropdown">
+                <div id="avatar-container">
+                    <img src="./Images/avatar-placeholder.jpg" alt="avatar">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div id="nav-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+            <div id="user-init-links" style="display: none;">
+                <a id="login" href="./log-in">Log In</a>
+                <a id="signup" href="./sing-up">Sign Up</a>
+            </div>
+        </div>
     </div>
     <main>
         <h1>Albums</h1>
         <section id="album-gallery">
             <div id="col1" class="gallery-column">
                 <div id="invincible" class="album-cover-container">
-                    <img src="../Images/invincible.jpg" alt="Invincible">
+                    <img src="./Images/invincible.jpg" alt="Invincible">
                     <div class="middle">
                         <h2>Invincible</h2>
                         <a href="https://open.spotify.com/album/0zOdkaCbYN1B42zw8TUYlY" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="miracles" class="album-cover-container">
-                    <img src="../Images/miracles.jpg" alt="Miracles">
+                    <img src="./Images/miracles.jpg" alt="Miracles">
                     <div class="middle">
                         <h2>Miracles</h2>
                         <a href="https://open.spotify.com/album/4wI5C041sDGltcKoh1fOz7" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="unleashed" class="album-cover-container">
-                    <img src="../Images/unleashed.png" alt="Unleashed">
+                    <img src="./Images/unleashed.png" alt="Unleashed">
                     <div class="middle">
                         <h2>Unleashed</h2>
                         <a href="https://open.spotify.com/album/6G0POeSml1dY0l8SuvhY6s" class="fa fa-spotify"></a>
@@ -62,21 +79,21 @@
             </div>
             <div id="col2" class="gallery-column">
                 <div id="archangel" class="album-cover-container">
-                    <img src="../Images/archangel.jpg" alt="Archangel">
+                    <img src="./Images/archangel.jpg" alt="Archangel">
                     <div class="middle">
                         <h2>Archangel</h2>
                         <a href="https://open.spotify.com/album/1TVpHhBK3pSTqizgLLh16s" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="battlecry" class="album-cover-container">
-                    <img src="../Images/battlecry.jpg" alt="Battlecry">
+                    <img src="./Images/battlecry.jpg" alt="Battlecry">
                     <div class="middle">
                         <h2>Battlecry</h2>
                         <a href="https://open.spotify.com/album/4y7T04fej3MJ8tAe2FeKD5" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="dragon" class="album-cover-container">
-                    <img src="../Images/dragon.png" alt="Dragon">
+                    <img src="./Images/dragon.png" alt="Dragon">
                     <div class="middle">
                         <h2>Dragon</h2>
                         <a href="https://open.spotify.com/album/7I5PK0V1gvLsAkpDJbjfqJ" class="fa fa-spotify"></a>
@@ -85,21 +102,21 @@
             </div>
             <div id="col3" class="gallery-column">
                 <div id="skyworld" class="album-cover-container">
-                    <img src="../Images/skyworld.jpg" alt="Skyworld">
+                    <img src="./Images/skyworld.jpg" alt="Skyworld">
                     <div class="middle">
                         <h2>Skyworld</h2>
                         <a href="https://open.spotify.com/album/01w0dp5OVOgviPw2HHXB3M" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="classics-volume-2" class="album-cover-container">
-                    <img src="../Images/classics-volume-2.jpg" alt="Classics Volume 2">
+                    <img src="./Images/classics-volume-2.jpg" alt="Classics Volume 2">
                     <div class="middle">
                         <h2>Classics Volume 2</h2>
                         <a href="https://open.spotify.com/album/5aQcKqRbuee5MP8TnHGHTK" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="myth" class="album-cover-container">
-                    <img src="../Images/myth.png" alt="Myth">
+                    <img src="./Images/myth.png" alt="Myth">
                     <div class="middle">
                         <h2>Myth</h2>
                         <a href="https://open.spotify.com/album/5iZq2XooveQg7ZgfxN9oS9" class="fa fa-spotify"></a>
@@ -108,14 +125,14 @@
             </div>
             <div id="col4" class="gallery-column">
                 <div id="classics-volume-1" class="album-cover-container">
-                    <img src="../Images/classics-volume-1.jpg" alt="Classics Volume 1">
+                    <img src="./Images/classics-volume-1.jpg" alt="Classics Volume 1">
                     <div class="middle">
                         <h2>Classics Volume 1</h2>
                         <a href="https://open.spotify.com/album/6X1BVrP7yJJnpRBncnGIB5" class="fa fa-spotify"></a>
                     </div>
                 </div>
                 <div id="vanquish" class="album-cover-container">
-                    <img src="../Images/vanquish.jpg" alt="Vanquish">
+                    <img src="./Images/vanquish.jpg" alt="Vanquish">
                     <div class="middle">
                         <h2>Vanquish</h2>
                         <a href="https://open.spotify.com/album/4LTuRCaAMbtmkuiG808J48" class="fa fa-spotify"></a>
@@ -130,16 +147,16 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a class="main-footer-link" href="./index.html">Home</a>
+                        <a class="main-footer-link" href="./">Home</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./founders.html">Founders</a>
+                        <a class="main-footer-link" href="./founders">Founders</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./albums.html">Albums</a>
+                        <a class="main-footer-link" href="./albums">Albums</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./news.html">News</a>
+                        <a class="main-footer-link" href="./news">News</a>
                     </li>
                 </ul>
             </div>
@@ -193,7 +210,7 @@
             <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
         </div>
     </footer>
-    <script src="../JavaScript/general-script.js"></script>
-    <script src="../JavaScript/albums-script.js"></script>
+    <script src="./JavaScript/general-script.js"></script>
+    <script src="./JavaScript/albums-script.js"></script>
 </body>
 </html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/sign-up-style.css">
+    <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div id="navbar-container">
+        <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
+        <a id="navbar-logo" href="./">
+            <img src="./Images/tsfh-logo.jpg" alt="TSFH">
+        </a>
+        <nav id="navbar-links">
+            <ul>
+                <li>
+                    <a href="./">Home</a>
+                </li>
+                <li>
+                    <a href="./founders">Founders</a>
+                </li>
+                <li>
+                    <a href="./albums">Albums</a>
+                </li>
+                <li>
+                    <a href="./news">News</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="user-options-container">
+            <div id="nav-dropdown">
+                <div id="avatar-container">
+                    <img src="./Images/avatar-placeholder.jpg" alt="avatar">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div id="nav-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+            <div id="user-init-links" style="display: none;">
+                <a id="login" href="./log-in">Log In</a>
+                <a id="signup" href="./sing-up">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <h1>Sign Up</h1>
+        <form method="post">
+            <div class="form-field-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-field-container">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-field-container">
+                <label for="repeatpassword">Repeat password:</label>
+                <input type="password" id="repeatpassword" name="repeatpassword" required>
+            </div>
+            <div class="form-field-container">
+                <button id="submit-button" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </main>
+    <footer id="main-footer">
+        <div id="main-footer-links">
+            <div>
+                <h4>Menu</h4>
+                <ul>
+                    <li>
+                        <a class="main-footer-link" href="./">Home</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="./founders">Founders</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="./albums">Albums</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="./news">News</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4>Useful Links</h4>
+                <ul>
+                    <li>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/">Official Website</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="https://www.thomasbergersen.com/">Thomas Bergersen</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="https://nickphoenix.com/">Nick Phoenix</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="https://www.twostepsfromhell.com/live/">Two Steps From Hell Live</a>
+                    </li>
+                    <li>
+                        <a class="main-footer-link" href="https://twostepsfromhellstore.com/">Official Merchandise</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4>Social Media</h4>
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@TwoStepsFromHell-Official" class="fa fa-youtube"></a>
+                        <a class="main-footer-link" href="https://www.youtube.com/@TwoStepsFromHell-Official">Two Steps From Hell</a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/twostepsfromhell/" class="fa fa-facebook"></a>
+                        <a class="main-footer-link" href="https://www.facebook.com/twostepsfromhell/">Two Steps From Hell</a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/thomasbergersen/" class="fa fa-facebook"></a>
+                        <a class="main-footer-link" href="https://www.facebook.com/thomasbergersen/">Thomas Bergersen</a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/nickphoenixartist/" class="fa fa-facebook"></a>
+                        <a class="main-footer-link" href="https://www.facebook.com/nickphoenixartist/">Nick Phoenix</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Me</h4>
+                <p><a class="main-footer-link" href="mailto:k.kochanczyk@student.uj.edu.pl">k.kochanczyk@student.uj.edu.pl</a></p>
+            </div>
+        </div>
+        <div id="main-footer-copyright">
+            <p>&copy; 2023 Two Steps From Hell. All right reserved. Website by Kamil Kochańczyk.</p>
+        </div>
+    </footer>
+    <script src="./JavaScript/general-script.js"></script>
+</body>
+</html>
