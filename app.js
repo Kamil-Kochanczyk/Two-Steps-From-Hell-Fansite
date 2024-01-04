@@ -83,7 +83,14 @@ app.post('/submit-log-in-data', (req, res) => {
 });
 
 app.get('/get-active-user', (req, res) => {
-  res.json(activeUser);
+  if (activeUser === null) {
+    res.json(null);
+  }
+  else {
+    let username = activeUser.username;
+    let email = activeUser.email;
+    res.json({ username, email });
+  }
 });
 
 app.get('/log-out', (req, res) => {
