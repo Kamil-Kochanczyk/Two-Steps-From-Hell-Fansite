@@ -1,3 +1,71 @@
+/*
+====================================
+Server
+====================================
+*/
+
+async function getActiveUser(callback) {
+    try {
+        const response = await fetch("/get-active-user");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        const activeUser = await response.json();
+
+        callback(activeUser);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+function initializeNavbar(activeUser) {
+    const navDropdown = document.getElementById("nav-dropdown");
+    const userInitLinks = document.getElementById("user-init-links");
+
+    if (activeUser) {
+        navDropdown.style.display = "";
+        userInitLinks.style.display = "none";
+    }
+    else {
+        navDropdown.style.display = "none";
+        userInitLinks.style.display = "";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    getActiveUser((activeUser) => {
+        initializeNavbar(activeUser);
+    });
+});
+
+async function logOut(callback) {
+    try {
+        const response = await fetch("/log-out");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        callback();
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+document.getElementById("log-out").addEventListener("click", () => {
+    logOut(() => {});
+});
+
+/*
+====================================
+Navbar dropdown
+====================================
+*/
+
 function toggleNavDropdown() {
     document.getElementById("nav-dropdown-content").classList.toggle("show-block");
 }
@@ -17,6 +85,12 @@ window.onclick = (e) => {
         }
     }
 }
+
+/*
+====================================
+Navbar
+====================================
+*/
 
 const showText = "Show menu";
 const hideText = "Hide menu";

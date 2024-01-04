@@ -7,6 +7,28 @@ h1 {
     margin: 66px auto;
 }
 
+#error-box {
+    display: none;
+    width: 400px;
+    height: 66px;
+    background-color: #26181d;
+    border: 1px solid #792e2e;
+    padding: 10px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#error-box-x {
+    cursor: pointer;
+    color: #f85149;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3px;
+    right: 5px;
+}
+
 form {
     background-color: #0d1117;
     border-radius: 8px;
@@ -15,7 +37,6 @@ form {
     width: 400px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 10px 1px #2e2e3a;
 }
 
 .form-field-container {
@@ -60,7 +81,7 @@ input:focus {
 }
 
 @media screen and (max-width: 450px) {
-    form {
+    #error-box, form {
         width: 100%;
     }
 }
