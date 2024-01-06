@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./CSS/general-style.css">
-    <link rel="stylesheet" type="text/css" href="./CSS/news-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/comments-template-style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/comments-style.css">
     <link rel="icon" type="image/jpg" href="./Images/tsfh-logo.jpg">
-    <title>News</title>
+    <title>Comments</title>
 </head>
 <body>
     <div id="navbar-container">
@@ -45,7 +47,7 @@
                 </div>
                 <div id="nav-dropdown-content">
                     <a id="profile" href="./profile">Profile</a>
-                    <a id="log-out" href="./news">Log Out</a>
+                    <a id="log-out" href="./comments">Log Out</a>
                 </div>
             </div>
             <div id="user-init-links">
@@ -55,55 +57,23 @@
         </div>
     </div>
     <main>
-        <h1>Latest news</h1>
-        <hr>
-        <article id="bloom">
-            <h2>"Bloom"</h2>
-            <h3>New single by Thomas Bergersen</h3>
-            <h4>10.11.2023</h4>
-            <hr>
-            <p>
-                <cite>Bloom</cite>, a new single by Thomas Bergersen, was released on November 10, 2023.
-                It is a song about the feeling that you have when you are next to the person you love.
-                It features the voice of Thomas Bergersen himself.
-            </p>
-            <p>
-                Listen on Spotify: <a href="https://open.spotify.com/album/5PenbQsxKoTkKqLxsVMkwO">Bloom</a>
-            </p>
-            <img class="cover" src="./Images/bloom.jpg" alt="Bloom">
-        </article>
-        <hr>
-        <article id="rock-the-lightning">
-            <h2>"Rock The Lightning"</h2>
-            <h3>New single by Nick Phoenix</h3>
-            <h4>10.11.2023</h4>
-            <hr>
-            <p>
-                <cite>Rock the Lightning</cite> is a new rock single by Nick Phoenix.
-                It was released on November 10, 2023.
-                Nick Phoenix also confirmed that he plans to make a music video for this song in the future.
-            </p>
-            <p>
-                Listen on Spotify: <a href="https://open.spotify.com/album/69Q78JxW24cPD0Z00i7KRu">Rock The Lightning</a>
-            </p>
-            <img class="cover" src="./Images/rock-the-lightning.jpg">
-        </article>
-        <hr>
-        <article id="am-i-real">
-            <h2>"Am I Real"</h2>
-            <h3>New single by Thomas Bergersen</h3>
-            <h4>13.10.2023</h4>
-            <hr>
-            <p>
-                <cite>Am I Real</cite>, Thomas Bergersen's new single, was realeased on October 13, 2023.
-                It was made in collaboration with Boom Jinx, a Norwegian music producer and DJ.
-                Video for this song is accompanied by a fictional story.
-            </p>
-            <p>
-                Listen on YouTube: <a href="https://www.youtube.com/watch?v=ydpYtQxkP3E">Am I Real</a>
-            </p>
-            <img class="cover" src="./Images/am-i-real.jpg">
-        </article>
+        <section id="first-section">
+            <h2>Add new comment</h2>
+            <button id="anonymous-user-button" class="acf-button">Log In</button>
+            <form class="add-comment-form add-new-comment" style="display: none;">
+                <textarea class="new-comment-area" name="newcomment" rows="5" required></textarea>
+                <div class="acf-button-container">
+                    <button class="acf-button ok-comment-button" type="submit">OK</button>
+                    <button class="acf-button cancel-comment-button" type="button">Cancel</button>
+                </div>
+            </form>
+        </section>
+        <section id="posted-comments">
+            <h2>Users' comments</h2>
+            <div id="posted-comments-container">
+                
+            </div>
+        </section>
     </main>
     <footer id="main-footer">
         <div id="main-footer-links">
@@ -178,5 +148,6 @@
         </div>
     </footer>
     <script src="./JavaScript/general-script.js"></script>
+    <script src="./JavaScript/comments-script.js"></script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+#first-section, #posted-comments {
+    padding: 10px 20px;
+    margin: 30px 0;
+}
+
+#first-section h2, #posted-comments h2 {
+    text-align: center;
+    font-size: 2.3em;
+}
+
+#anonymous-user-button {
+    margin: 0 auto;
+    display: block;
+    padding: 10px !important;
+}
+
+#posted-comments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 450px) {
+    #first-section, #posted-comments {
+        padding: 10px;
+    }
+
+    #posted-comments-container {
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    #first-section h2, #posted-comments h2 {
+        font-size: 2em;
+    }
+}
