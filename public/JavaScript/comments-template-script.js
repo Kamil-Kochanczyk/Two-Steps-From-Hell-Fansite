@@ -1,10 +1,10 @@
 class Comment {
-    constructor(id, username, date, content) {
+    constructor(id, username, date, content, voteResult) {
         this.id = id;
         this.username = username;
         this.date = date;
         this.content = content;
-        this.voteResult = 0;
+        this.voteResult = voteResult;
         this.commentAvatar = new CommentAvatar();
         this.commentRightColumn = new CommentRightColumn(this.username, this.date, this.content, this.voteResult);
     }
@@ -21,6 +21,26 @@ class Comment {
         commentContainer.appendChild(commentRightColumnContainer);
 
         return commentContainer;
+    }
+
+    static fromObj(obj) {
+        const id = obj.id;
+        const username = obj.username;
+        const date = obj.date;
+        const content = obj.content;
+        const voteResult = obj.voteResult;
+
+        return new Comment(id, username, date, content, voteResult);
+    }
+
+    static toObj(comment) {
+        const id = comment.id;
+        const username = comment.username;
+        const date = comment.date;
+        const content = comment.content;
+        const voteResult = comment.voteResult;
+
+        return { id, username, date, content, voteResult };
     }
 }
 
@@ -294,8 +314,7 @@ class CommentReplyButton {
 }
 
 class ToWhatReply {
-    constructor(id, referenceComment) {
-        this.id = id;
+    constructor(referenceComment) {
         this.referenceComment = referenceComment;
     }
 
@@ -319,6 +338,12 @@ class ToWhatReply {
           return `${username} wrote: ${content}`;
         }
     }
+
+    static fromObj(obj) {
+        const referenceComment = Comment.fromObj(obj);
+
+        return new ToWhatReply(referenceComment);
+    }
 }
 
 class Reply {
@@ -339,6 +364,13 @@ class Reply {
 
         return replyContainer;
     }
+
+    static fromObj(obj) {
+        const toWhatReply = ToWhatReply.fromObj(obj.toWhatReply);
+        const comment = Comment.fromObj(obj.comment);
+
+        return new Reply(toWhatReply, comment);
+    }
 }
 
 class Replies {
@@ -355,6 +387,17 @@ class Replies {
         }
 
         return repliesContainer;
+    }
+
+    static fromArray(array) {
+        const replies = [];
+
+        for (let obj of array) {
+            let reply = Reply.fromObj(obj);
+            replies.push(reply);
+        }
+
+        return new Replies(replies);
     }
 }
 
@@ -375,5 +418,75 @@ class Conversation {
         conversationContainer.appendChild(repliesContainer);
 
         return conversationContainer;
+    }
+
+    static fromObj(obj) {
+        const comment = Comment.fromObj(obj.comment);
+        const replies = Replies.fromArray(obj.replies);
+
+        return new Conversation(comment, replies);
+    }
+}
+
+class Form {
+    constructor() {
+        
+    }
+
+    getContainer() {
+        const formElement = document.createElement("form");
+        formElement.classList.add("add-comment-form");
+      
+        const textareaElement = document.createElement("textarea");
+        textareaElement.classList.add("new-comment-area");
+        textareaElement.name = "newcomment";
+        textareaElement.rows = "5";
+        textareaElement.required = true;
+      
+        const buttonContainerElement = document.createElement("div");
+        buttonContainerElement.classList.add("acf-button-container");
+      
+        const okButtonElement = document.createElement("button");
+        okButtonElement.classList.add("acf-button", "ok-comment-button");
+        okButtonElement.type = "submit";
+        okButtonElement.textContent = "OK";
+      
+        const cancelButtonElement = document.createElement("button");
+        cancelButtonElement.classList.add("acf-button", "cancel-comment-button");
+        cancelButtonElement.type = "button";
+        cancelButtonElement.textContent = "Cancel";
+      
+        formElement.appendChild(textareaElement);
+        formElement.appendChild(buttonContainerElement);
+        buttonContainerElement.appendChild(okButtonElement);
+        buttonContainerElement.appendChild(cancelButtonElement);
+      
+        return formElement;
+      }      
+}
+
+class AddNewCommentForm extends Form {
+    constructor() {
+        super();
+    }
+
+    getContainer() {
+        const formElement = super.getContainer();
+        formElement.classList.add("add-new-comment");
+        
+        return formElement;
+    }
+}
+
+class AddReplyForm extends Form {
+    constructor() {
+        super();
+    }
+
+    getContainer() {
+        const formElement = super.getContainer();
+        formElement.classList.add("add-reply");
+
+        return formElement;
     }
 }

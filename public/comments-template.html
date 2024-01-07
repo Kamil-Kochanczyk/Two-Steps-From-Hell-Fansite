@@ -3,23 +3,60 @@
 
 
 <!-- 
+    General structure (database -> json)
+
+    [
+        {
+            comment: commentObj,
+            replies: [
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                },
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                },
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                }
+            ]
+        },
+        {
+            comment: commentObj,
+            replies: [
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                },
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                },
+                {
+                    toWhatReply: commentObj,
+                    comment: commentObj
+                }
+            ]
+        }
+    ]
+
+    commentObj <=> { id: id, username: username, date: date, content: content, voteResult: voteResult }
+ -->
+
+
+
+<!-- 
     Convention for assigning necessary IDs to elements:
 
     comment-container (main comments):
         com-main_comment_number
         com-1, com-2, com-3
 
-    to-what-reply-container (replies to main comments):
-        repto-main_comment_number
-        repto-1, repto-2, repto-3
-
     comment-container (reply comments):
         com-reply_comment_number <=> com-main_comment_number-next_number
         com-1-1, com-2-5, com-3-10
-
-    to-what-reply-container (replies to reply comments):
-        repto-reply_comment_number
-        repto-1-1, repto-2-5, repto-3-10
 
     (next_number refers to the next integer within reply numberspace associated with each main comment)
  -->
