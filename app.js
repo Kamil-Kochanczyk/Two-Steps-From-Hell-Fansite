@@ -3,8 +3,13 @@ const app = express();
 const port = 3000;
 
 const users = require('./users');
+const commentsDB = require('./comments-db');
 
 let activeUser = null;
+
+if (!commentsDB.dbExists()) {
+  commentsDB.createDB();
+}
 
 // Serve static files from the 'HTML' folder
 app.use(express.static('public', {
@@ -95,6 +100,32 @@ app.get('/get-active-user', (req, res) => {
 
 app.get('/log-out', (req, res) => {
   activeUser = null;
+});
+
+app.post('/add-new-comment', (req, res) => {
+  const newCommentData = req.body;
+
+  try {
+    commentsDB.nextCommentID((nextID) => {
+      const newCommentObj = {
+        id: nextID,
+        username: newCommentData.username,
+        date: newCommentData.date,
+        content: newCommentData.content,
+        voteResult: 0
+      };
+  
+      commentsDB.addNewComment(newCommentObj, () => {
+        commentsDB.getComment(nextID, (foundComment) => {
+          res.json(foundComment);
+        });
+      });
+    });
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ 'error': 'add-new-comment-error' });
+  }
 });
 
 app.listen(port, () => {

@@ -57,6 +57,7 @@ class CommentAvatar {
         const img = document.createElement("img");
         img.src = this.img;
         img.alt = this.alt
+        commentAvatarContainer.appendChild(img);
 
         return commentAvatarContainer;
     }
@@ -332,10 +333,10 @@ class ToWhatReply {
     static formatMessage(username, content, maxContentLength) {
         if (content.length > maxContentLength) {
           const trimmedContent = content.substring(0, maxContentLength - 3) + '...';
-          return `${username} wrote: ${trimmedContent}`;
+          return `${username} wrote: "${trimmedContent}"`;
         }
         else {
-          return `${username} wrote: ${content}`;
+          return `${username} wrote: "${content}"`;
         }
     }
 
@@ -490,3 +491,29 @@ class AddReplyForm extends Form {
         return formElement;
     }
 }
+
+export { 
+    Comment, 
+    CommentAvatar, 
+    CommentRightColumn, 
+    CommentFrame, 
+    CommentTopInfo, 
+    CommentUsername, 
+    CommentTime, 
+    CommentMainText, 
+    CommentBottomOptions, 
+    CommentVoting, 
+    CommentVote, 
+    CommentVoteUp, 
+    CommentVoteDown, 
+    SVG, 
+    CommentVoteResult, 
+    CommentReplyButton, 
+    ToWhatReply, 
+    Reply, 
+    Replies, 
+    Conversation, 
+    Form, 
+    AddNewCommentForm, 
+    AddReplyForm 
+};
