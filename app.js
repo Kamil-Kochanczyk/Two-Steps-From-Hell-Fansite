@@ -126,6 +126,17 @@ app.post('/add-new-comment', async (req, res) => {
   }
 });
 
+app.get('/get-all-conversations', async (req, res) => {
+  try {
+    const allConversations = await commentsDB.getDB();
+    res.json(allConversations);
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ error: 'get-all-conversations-error' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });

@@ -38,6 +38,8 @@ async function initializeCommentsPage() {
         else {
             initializeLogInButton();
         }
+
+        initializePostedCommentsSection();
     }
     catch (error) {
         console.error(error);
@@ -143,4 +145,31 @@ function initializeLogInButton() {
 
     const section = document.getElementById("first-section");
     section.appendChild(logInButton);
+}
+
+async function initializePostedCommentsSection() {
+    try {
+        const response = await fetch("/get-all-conversations");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        const allConversations = await response.json();
+
+        if (allConversations.error) {
+            throw allConversations;
+        }
+
+        const postedCommentsContainer = document.getElementById("posted-comments-container");
+
+        for (let conversationObj of allConversations) {
+            const newConversation = Conversation.fromObj(conversationObj);
+            const newConversationContainer = newConversation.getContainer();
+            postedCommentsContainer.prepend(newConversationContainer);
+        }
+    }
+    catch (error) {
+        throw error;
+    }
 }
