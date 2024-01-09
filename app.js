@@ -23,67 +23,65 @@ app.use(express.json());
 // Handle complicated data from forms
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/submit-sign-up-data', (req, res) => {
+app.post('/submit-sign-up-data', async (req, res) => {
   const signUpData = req.body;
 
   try {
     if (!users.usersExist()) {
-      users.initializeUsers(signUpData, () => {
-        users.findUser(signUpData.username, (user) => {
-          activeUser = user;
-          res.json({ 'initialized': 'initialized' });
-        });
-      });
+      await users.initializeUsers(signUpData);
+
+      const foundUser = await users.findUser(signUpData.username);
+      activeUser = foundUser;
+
+      res.json({ initialized: 'initialized' });
     }
     else {
-      users.findUser(signUpData.username, (foundUser) => {
-        if (foundUser === undefined) {
-          users.addUser(signUpData, () => {
-            users.findUser(signUpData.username, (user) => {
-              activeUser = user;
-              res.json({ 'added': 'added' });
-            });
-          });
-        }
-        else {
-          res.json({ 'error': 'username-already-exists' });
-        }
-      });
+      const foundUser = await users.findUser(signUpData.username);
+
+      if (foundUser === undefined) {
+        await users.addUser(signUpData);
+
+        const auxFoundUser = await users.findUser(signUpData.username);
+        activeUser = auxFoundUser;
+
+        res.json({ added: 'added' });
+      }
+      else {
+        res.json({ error: 'username-already-exists' });
+      }
     }
   }
   catch (error) {
     console.error(error);
-    res.json({ 'error': 'sign-up-error' });
+    res.json({ error: 'sign-up-error' });
   }
 });
 
-app.post('/submit-log-in-data', (req, res) => {
+app.post('/submit-log-in-data', async (req, res) => {
   const logInData = req.body;
 
   try {
     if (!users.usersExist()) {
-      res.json({ 'error': 'database-not-found' });
+      res.json({ error: 'database-not-found' });
     }
     else {
-      users.findUser(logInData.username, (foundUser) => {
-        if (foundUser === undefined) {
-          res.json({ 'error': 'username-not-found' });
-        }
-        else {
-          if (foundUser.password !== logInData.password) {
-            res.json({ 'error': 'incorrect-password' });
-          }
-          else {
-            activeUser = foundUser;
-            res.json({ 'success': 'success' });
-          }
-        }
-      });
+      const foundUser = await users.findUser(logInData.username);
+
+      if (foundUser === undefined) {
+        res.json({ error: 'username-not-found' });
+      }
+      else if (foundUser.password !== logInData.password) {
+        res.json({ error: 'incorrect-password' });
+      }
+      else {
+        activeUser = foundUser;
+        res.json({ success: 'success' });
+      }
     }
   }
   catch (error) {
     console.error(error);
-    res.json({ 'error': 'log-in-error' });
+    res.json({ error: 'log-in-error' });
   }
 });
 
@@ -102,29 +100,29 @@ app.get('/log-out', (req, res) => {
   activeUser = null;
 });
 
-app.post('/add-new-comment', (req, res) => {
+app.post('/add-new-comment', async (req, res) => {
   const newCommentData = req.body;
 
   try {
-    commentsDB.nextCommentID((nextID) => {
-      const newCommentObj = {
-        id: nextID,
-        username: newCommentData.username,
-        date: newCommentData.date,
-        content: newCommentData.content,
-        voteResult: 0
-      };
-  
-      commentsDB.addNewComment(newCommentObj, () => {
-        commentsDB.getComment(nextID, (foundComment) => {
-          res.json(foundComment);
-        });
-      });
-    });
+    const nextCommentID = await commentsDB.nextCommentID();
+
+    const newCommentObj = {
+      id: nextCommentID,
+      username: newCommentData.username,
+      date: newCommentData.date,
+      content: newCommentData.content,
+      voteResult: 0
+    };
+
+    await commentsDB.addNewComment(newCommentObj);
+
+    const foundComment = await commentsDB.getComment(nextCommentID);
+
+    res.json(foundComment);
   }
   catch (error) {
     console.error(error);
-    res.json({ 'error': 'add-new-comment-error' });
+    res.json({ error: 'add-new-comment-error' });
   }
 });
 

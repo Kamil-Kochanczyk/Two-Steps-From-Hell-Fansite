@@ -1,57 +1,55 @@
 const fs = require('fs');
+const { promisify } = require('util');
 const PATH = 'users.json';
+
+const writeFileAsync = promisify(fs.writeFile);
+const readFileAsync = promisify(fs.readFile);
 
 function usersExist() {
     return fs.existsSync(PATH);
 }
 
-function initializeUsers(user, callback) {
-    const users = [user];
-    fs.writeFile(PATH, JSON.stringify(users), (err) => {
-        if (err) {
-            console.error(err);
-            throw err;
-        }
-        callback();
-    });
+async function initializeUsers(user) {
+    try {
+        const users = [user];
+        await writeFileAsync(PATH, JSON.stringify(users));
+    }
+    catch (error) {
+        throw error;
+    }
 }
 
-function getUsers(callback) {
-    fs.readFile(PATH, (err, data) => {
-        if (err) {
-            console.error(err);
-            callback(err, null);
-            throw err;
-        }
+async function getUsers() {
+    try {
+        const data = await readFileAsync(PATH);
         const users = JSON.parse(data);
-        callback(null, users);
-    });
+        return users;
+    }
+    catch (error) {
+        throw error;
+    }
 }
 
-function addUser(user, callback) {
-    getUsers((err, users) => {
-        if (err) {
-            return;
-        }
+async function addUser(user) {
+    try {
+        const users = await getUsers();
         users.push(user);
-        fs.writeFile(PATH, JSON.stringify(users), (err) => {
-            if (err) {
-                console.error(err);
-                throw err;
-            }
-            callback();
-        });
-    });
+        await writeFileAsync(PATH, JSON.stringify(users));
+    }
+    catch (error) {
+        throw error;
+    }
 }
 
-function findUser(username, callback) {
-    getUsers((err, users) => {
-        if (err) {
-            return;
-        }
+async function findUser(username) {
+    try {
+        const users = await getUsers();
         const foundUser = users.find(user => user.username === username);
-        callback(foundUser);
-    });
+        return foundUser;
+    }
+    catch (error) {
+        throw error;
+    }
 }
 
 module.exports = {
