@@ -39,7 +39,7 @@ async function initializeCommentsPage() {
             initializeLogInButton();
         }
 
-        initializePostedCommentsSection(loggedUser);
+        await initializePostedCommentsSection(loggedUser);
     }
     catch (error) {
         console.error(error);
@@ -105,6 +105,12 @@ function initializeAddNewCommentForm(loggedUser) {
 
             const newlyCreatedReplyButton = newConversationContainer.querySelector(".comment-reply-button");
             initializeReplyButtonForLogged(newlyCreatedReplyButton, loggedUser);
+
+            const newlyCreatedVoteUpButton = newConversationContainer.querySelector(".comment-vote-up");
+            initializeVoteButton(newlyCreatedVoteUpButton, loggedUser);
+
+            const newlyCreatedVoteDownButton = newConversationContainer.querySelector(".comment-vote-down");
+            initializeVoteButton(newlyCreatedVoteDownButton, loggedUser);
 
             const postedCommentsContainer = document.getElementById("posted-comments-container");
             postedCommentsContainer.prepend(newConversationContainer);
@@ -187,6 +193,31 @@ async function initializePostedCommentsSection(loggedUser) {
                 initializeReplyButtonForAnonymous(replyButton);
             }
         }
+
+        const voteUpButtons = document.getElementsByClassName("comment-vote-up");
+        const voteDownButtons = document.getElementsByClassName("comment-vote-down");
+
+        if (loggedUser) {
+            for (let voteUpButton of voteUpButtons) {
+                initializeVoteButton(voteUpButton, loggedUser);
+            }
+    
+            for (let voteDownButton of voteDownButtons) {
+                initializeVoteButton(voteDownButton, loggedUser);
+            }
+
+            await colorizeVoteButtons(voteUpButtons, loggedUser);
+            await colorizeVoteButtons(voteDownButtons, loggedUser);
+        }
+        else {
+            for (let voteUpButton of voteUpButtons) {
+                blockVoteButton(voteUpButton);
+            }
+    
+            for (let voteDownButton of voteDownButtons) {
+                blockVoteButton(voteDownButton);
+            }
+        }
     }
     catch (error) {
         throw error;
@@ -258,6 +289,12 @@ function initializeReplyButtonForLogged(replyButton, loggedUser) {
                 const newlyCreatedReplyButton = newReplyContainer.querySelector(".comment-reply-button");
                 initializeReplyButtonForLogged(newlyCreatedReplyButton, loggedUser);
 
+                const newlyCreatedVoteUpButton = newReplyContainer.querySelector(".comment-vote-up");
+                initializeVoteButton(newlyCreatedVoteUpButton, loggedUser);
+    
+                const newlyCreatedVoteDownButton = newReplyContainer.querySelector(".comment-vote-down");
+                initializeVoteButton(newlyCreatedVoteDownButton, loggedUser);
+
                 addReplyFormContainer.remove();
             }
             catch (error) {
@@ -286,4 +323,119 @@ function initializeReplyButtonForAnonymous(replyButton) {
     replyButton.addEventListener("click", () => {
         window.location.href = "./log-in";
     });
+}
+
+function initializeVoteButton(voteButton, loggedUser) {
+    voteButton.addEventListener("click", async () => {
+        if (voteButton.classList.contains("green") || voteButton.classList.contains("red")) {
+            return;
+        }
+
+        try {
+            const commentContainer = voteButton.parentNode.parentNode.parentNode.parentNode;
+            const commentID = commentContainer.id;
+    
+            let voteType;
+    
+            if (voteButton.classList.contains("comment-vote-up")) {
+                voteType = "vote up";
+            }
+            else if (voteButton.classList.contains("comment-vote-down")) {
+                voteType = "vote down";
+            }
+            else {
+                throw "Unknown vote type";
+            }
+
+            const username = loggedUser.username;
+
+            const requestData = { commentID, voteType, username };
+
+            const response = await fetch("/vote", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error. Status: ${response.status}`);
+            }
+
+            const jsonResponse = await response.json();
+
+            if (jsonResponse.error) {
+                throw jsonResponse;
+            }
+
+            const voteResult = jsonResponse.voteResult;
+            console.log(voteResult);
+
+            const parentContainer = voteButton.parentNode;
+
+            parentContainer.querySelector(".comment-vote-result").innerHTML = voteResult;
+
+            if (voteType === "vote up") {
+                parentContainer.querySelector(".comment-vote-down").classList.remove("red");
+                voteButton.classList.add("green");
+            }
+
+            if (voteType === "vote down") {
+                parentContainer.querySelector(".comment-vote-up").classList.remove("green");
+                voteButton.classList.add("red");
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    });
+}
+
+function blockVoteButton(voteButton) {
+    voteButton.addEventListener("click", () => {
+        window.location.href = "./log-in";
+    });
+}
+
+async function colorizeVoteButtons(voteButtons, loggedUser) {
+    try {
+        const username = loggedUser.username;
+        
+        const response = await fetch("/get-user-votes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        const userVotes = await response.json();
+
+        if (userVotes.error) {
+            throw userVotes;
+        }
+
+        for (let voteButton of voteButtons) {
+            const commentContainer = voteButton.parentNode.parentNode.parentNode.parentNode;
+            const commentID = commentContainer.id;
+
+            if (voteButton.classList.contains("comment-vote-up")) {
+                if (userVotes.likes.indexOf(commentID) !== -1) {
+                    voteButton.classList.add("green");
+                }
+            }
+            else if (voteButton.classList.contains("comment-vote-down")) {
+                if (userVotes.dislikes.indexOf(commentID) !== -1) {
+                    voteButton.classList.add("red");
+                }
+            }
+            else {
+                throw "Unknown vote type";
+            }
+        }
+    }
+    catch (error) {
+        throw error;
+    }
 }

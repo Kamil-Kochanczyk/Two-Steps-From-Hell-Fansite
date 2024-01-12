@@ -141,6 +141,31 @@ async function getReply(id) {
     }
 }
 
+async function vote(commentID, vote) {
+    try {
+        const db = await getDB();
+        const conversationIndex = await getConversationIndex(commentID);
+        const mainCommentIDPattern = /^com-\d+$/;
+        const replyCommentIDPattern = /^com-\d+-\d+$/;
+
+        if (mainCommentIDPattern.test(commentID)) {
+            db[conversationIndex].comment.voteResult += vote;
+        }
+        else if (replyCommentIDPattern.test(commentID)) {
+            const replyIndex = db[conversationIndex].replies.findIndex(reply => reply.comment.id === commentID);
+            db[conversationIndex].replies[replyIndex].comment.voteResult += vote;
+        }
+        else {
+            throw "Unknown id format";
+        }
+
+        await writeFileAsync(PATH, JSON.stringify(db, null, 4));
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     dbExists,
     createDB,
@@ -151,5 +176,6 @@ module.exports = {
     getConversationIndex,
     nextReplyID,
     addNewReply,
-    getReply
+    getReply,
+    vote
 };

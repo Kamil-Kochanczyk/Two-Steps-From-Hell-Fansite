@@ -51,10 +51,7 @@ document.getElementById("log-in-form").addEventListener("submit", (e) => {
 
     submitLogInData((responseData) => {
         if (responseData.error) {
-            if (responseData.error === "database-not-found") {
-                showErrorBox("Unexpected error occurred");
-            }
-            else if (responseData.error === "username-not-found") {
+            if (responseData.error === "username-not-found") {
                 showErrorBox("This username doesn't exist")
             }
             else if (responseData.error === "incorrect-password") {

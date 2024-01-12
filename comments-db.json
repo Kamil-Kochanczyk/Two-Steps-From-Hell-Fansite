@@ -1,1 +1,195 @@
-[]
+[
+    {
+        "comment": {
+            "id": "com-1",
+            "username": "Tuilindo05",
+            "date": "12.01.2024 22:19",
+            "content": "Hello everyone! Welcome to the Two Steps From Hell fansite!",
+            "voteResult": -2
+        },
+        "replies": [
+            {
+                "toWhatReply": {
+                    "id": "com-1",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:19",
+                    "content": "Hello everyone! Welcome to the Two Steps From Hell fansite!",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-1-1",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:23",
+                    "content": "Hi, glad to be here!",
+                    "voteResult": 0
+                }
+            }
+        ]
+    },
+    {
+        "comment": {
+            "id": "com-2",
+            "username": "Tuilindo05",
+            "date": "12.01.2024 22:20",
+            "content": "What is your favourite album?",
+            "voteResult": 0
+        },
+        "replies": [
+            {
+                "toWhatReply": {
+                    "id": "com-2",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:20",
+                    "content": "What is your favourite album?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-1",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:21",
+                    "content": "My favourite album is definitely \"Battlecry\".",
+                    "voteResult": 1
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-2-1",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:21",
+                    "content": "My favourite album is definitely \"Battlecry\".",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-2",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:22",
+                    "content": "But I also love \"Unleashed\" and \"Invincible\". Others are great as well but these three are my favourites.",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-2",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:20",
+                    "content": "What is your favourite album?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-3",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:26",
+                    "content": "My favourite one is \"Sun\" although technically it's not their album.",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-2-1",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:21",
+                    "content": "My favourite album is definitely \"Battlecry\".",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-4",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:26",
+                    "content": "Love this one too!",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-2-4",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:26",
+                    "content": "Love this one too!",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-5",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:27",
+                    "content": "Very much!!!",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-2-3",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:26",
+                    "content": "My favourite one is \"Sun\" although technically it's not their album.",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-2-6",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:29",
+                    "content": "Yep but I think that we can count it too :)",
+                    "voteResult": 0
+                }
+            }
+        ]
+    },
+    {
+        "comment": {
+            "id": "com-3",
+            "username": "vc69",
+            "date": "12.01.2024 22:27",
+            "content": "What is your favourite song?",
+            "voteResult": 0
+        },
+        "replies": [
+            {
+                "toWhatReply": {
+                    "id": "com-3",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:27",
+                    "content": "What is your favourite song?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-3-1",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:27",
+                    "content": "My favourite one is probably \"Victory\".",
+                    "voteResult": -1
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-3",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:27",
+                    "content": "What is your favourite song?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-3-2",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:28",
+                    "content": "\"Heart of Courage\"...",
+                    "voteResult": 1
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-3-1",
+                    "username": "vc69",
+                    "date": "12.01.2024 22:27",
+                    "content": "My favourite one is probably \"Victory\".",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-3-3",
+                    "username": "Tuilindo05",
+                    "date": "12.01.2024 22:29",
+                    "content": "Yeah, this one is legendary...",
+                    "voteResult": 0
+                }
+            }
+        ]
+    }
+]

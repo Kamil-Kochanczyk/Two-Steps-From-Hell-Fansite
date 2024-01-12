@@ -94,6 +94,7 @@ html {
     padding: 6px 2px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .comment-vote-up:hover, .comment-vote-down:hover {
@@ -193,6 +194,22 @@ html {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
+}
+
+.green {
+    background-color: green !important;
+}
+
+.green:hover {
+    background-color: green !important;
+}
+
+.red {
+    background-color: #b60000 !important;
+}
+
+.red:hover {
+    background-color: #b60000 !important;
 }
 
 @media screen and (max-width: 450px) {

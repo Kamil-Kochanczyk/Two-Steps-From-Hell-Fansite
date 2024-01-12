@@ -9,10 +9,11 @@ function usersExist() {
     return fs.existsSync(PATH);
 }
 
-async function initializeUsers(user) {
+function initializeUsers() {
+    const users = [];
+    
     try {
-        const users = [user];
-        await writeFileAsync(PATH, JSON.stringify(users));
+        fs.writeFileSync(PATH, JSON.stringify(users, null, 4));
     }
     catch (error) {
         throw error;
@@ -34,7 +35,7 @@ async function addUser(user) {
     try {
         const users = await getUsers();
         users.push(user);
-        await writeFileAsync(PATH, JSON.stringify(users));
+        await writeFileAsync(PATH, JSON.stringify(users, null, 4));
     }
     catch (error) {
         throw error;

@@ -3,9 +3,18 @@ const app = express();
 const port = 3000;
 
 const usersDB = require('./users-db');
+const votingDB = require('./voting-db');
 const commentsDB = require('./comments-db');
 
 let activeUser = null;
+
+if (!usersDB.usersExist()) {
+  usersDB.initializeUsers();
+}
+
+if (!votingDB.exists()) {
+  votingDB.initialize();
+}
 
 if (!commentsDB.dbExists()) {
   commentsDB.createDB();
@@ -27,28 +36,20 @@ app.post('/submit-sign-up-data', async (req, res) => {
   const signUpData = req.body;
 
   try {
-    if (!usersDB.usersExist()) {
-      await usersDB.initializeUsers(signUpData);
+    const foundUser = await usersDB.findUser(signUpData.username);
 
-      const foundUser = await usersDB.findUser(signUpData.username);
-      activeUser = foundUser;
+    if (foundUser === undefined) {
+      await usersDB.addUser(signUpData);
 
-      res.json({ initialized: 'initialized' });
+      await votingDB.initializeUserEntry(signUpData.username);
+
+      const auxFoundUser = await usersDB.findUser(signUpData.username);
+      activeUser = auxFoundUser;
+
+      res.json({ added: 'added' });
     }
     else {
-      const foundUser = await usersDB.findUser(signUpData.username);
-
-      if (foundUser === undefined) {
-        await usersDB.addUser(signUpData);
-
-        const auxFoundUser = await usersDB.findUser(signUpData.username);
-        activeUser = auxFoundUser;
-
-        res.json({ added: 'added' });
-      }
-      else {
-        res.json({ error: 'username-already-exists' });
-      }
+      res.json({ error: 'username-already-exists' });
     }
   }
   catch (error) {
@@ -61,22 +62,17 @@ app.post('/submit-log-in-data', async (req, res) => {
   const logInData = req.body;
 
   try {
-    if (!usersDB.usersExist()) {
-      res.json({ error: 'database-not-found' });
+    const foundUser = await usersDB.findUser(logInData.username);
+
+    if (foundUser === undefined) {
+      res.json({ error: 'username-not-found' });
+    }
+    else if (foundUser.password !== logInData.password) {
+      res.json({ error: 'incorrect-password' });
     }
     else {
-      const foundUser = await usersDB.findUser(logInData.username);
-
-      if (foundUser === undefined) {
-        res.json({ error: 'username-not-found' });
-      }
-      else if (foundUser.password !== logInData.password) {
-        res.json({ error: 'incorrect-password' });
-      }
-      else {
-        activeUser = foundUser;
-        res.json({ success: 'success' });
-      }
+      activeUser = foundUser;
+      res.json({ success: 'success' });
     }
   }
   catch (error) {
@@ -166,6 +162,82 @@ app.post('/add-new-reply', async (req, res) => {
   catch (error) {
     console.error(error);
     res.json({ error: 'add-new-reply-error' });
+  }
+});
+
+app.post('/vote', async (req, res) => {
+  const requestData = req.body;
+
+  try {
+    const commentID = requestData.commentID;
+    const voteType = requestData.voteType;
+    const username = requestData.username;
+
+    if (voteType === "vote up") {
+      const alreadyLiked = await votingDB.alreadyLiked(commentID, username);
+
+      if (!alreadyLiked) {
+        await votingDB.addToLikes(commentID, username);
+      }
+      else {
+        throw "Comment already liked by this user";
+      }
+
+      const alreadyDisliked = await votingDB.alreadyDisliked(commentID, username);
+
+      if (!alreadyDisliked) {
+        await commentsDB.vote(commentID, 1);
+      }
+      else {
+        await votingDB.removeFromDislikes(commentID, username);
+        await commentsDB.vote(commentID, 2);
+      }
+    }
+    else if (voteType === "vote down") {
+      const alreadyDisliked = await votingDB.alreadyDisliked(commentID, username);
+
+      if (!alreadyDisliked) {
+        await votingDB.addToDislikes(commentID, username);
+      }
+      else {
+        throw "Comment already disliked by this user";
+      }
+
+      const alreadyLiked = await votingDB.alreadyLiked(commentID, username);
+
+      if (!alreadyLiked) {
+        await commentsDB.vote(commentID, -1);
+      }
+      else {
+        await votingDB.removeFromLikes(commentID, username);
+        await commentsDB.vote(commentID, -2);
+      }
+    }
+    else {
+      throw "Unknown vote type";
+  ``}
+
+    const votedComment = await commentsDB.getComment(commentID);
+
+    res.json({ voteResult: votedComment.voteResult });
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ error: 'vote-error' }); 
+  }
+});
+
+app.post('/get-user-votes', async (req, res) => {
+  const requestData = req.body;
+  const username = requestData.username;
+
+  try {
+    const userVotes = await votingDB.getEntry(username);
+    res.json(userVotes);
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ error: 'get-user-votes-error' }); 
   }
 });
 
