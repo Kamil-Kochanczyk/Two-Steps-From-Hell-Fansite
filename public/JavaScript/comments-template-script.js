@@ -320,7 +320,8 @@ class ToWhatReply {
     }
 
     getContainer() {
-        const toWhatReplyContainer = document.createElement("div");
+        const toWhatReplyContainer = document.createElement("a");
+        toWhatReplyContainer.href = "#" + this.referenceComment.id;
         toWhatReplyContainer.classList.add("to-what-reply-container");
 
         const username = this.referenceComment.username;

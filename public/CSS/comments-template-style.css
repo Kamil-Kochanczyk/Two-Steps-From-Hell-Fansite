@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .conversation-container {
     width: 100%;
     max-width: 800px;
@@ -141,6 +145,7 @@
     border: 1px solid #474747;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .to-what-reply-container:hover {
