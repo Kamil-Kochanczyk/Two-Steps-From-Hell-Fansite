@@ -39,7 +39,7 @@ async function initializeCommentsPage() {
             initializeLogInButton();
         }
 
-        initializePostedCommentsSection();
+        initializePostedCommentsSection(loggedUser);
     }
     catch (error) {
         console.error(error);
@@ -92,11 +92,19 @@ function initializeAddNewCommentForm(loggedUser) {
             }
     
             const commentObj = await response.json();
-            const newComment = new Comment(commentObj.id, commentObj.username, commentObj.date, commentObj.content, commentObj.voteResult);
+
+            if (commentObj.error) {
+                throw commentObj;
+            }
+
+            const newComment = Comment.fromObj(commentObj);
             const replies = new Replies([]);
 
             const newConversation = new Conversation(newComment, replies);
             const newConversationContainer = newConversation.getContainer();
+
+            const newlyCreatedReplyButton = newConversationContainer.querySelector(".comment-reply-button");
+            initializeReplyButtonForLogged(newlyCreatedReplyButton, loggedUser);
 
             const postedCommentsContainer = document.getElementById("posted-comments-container");
             postedCommentsContainer.prepend(newConversationContainer);
@@ -147,7 +155,7 @@ function initializeLogInButton() {
     section.appendChild(logInButton);
 }
 
-async function initializePostedCommentsSection() {
+async function initializePostedCommentsSection(loggedUser) {
     try {
         const response = await fetch("/get-all-conversations");
 
@@ -168,8 +176,114 @@ async function initializePostedCommentsSection() {
             const newConversationContainer = newConversation.getContainer();
             postedCommentsContainer.prepend(newConversationContainer);
         }
+
+        const replyButtons = document.getElementsByClassName("comment-reply-button");
+
+        for (let replyButton of replyButtons) {
+            if (loggedUser) {
+                initializeReplyButtonForLogged(replyButton, loggedUser);
+            }
+            else {
+                initializeReplyButtonForAnonymous(replyButton);
+            }
+        }
     }
     catch (error) {
         throw error;
     }
+}
+
+function initializeReplyButtonForLogged(replyButton, loggedUser) {
+    replyButton.addEventListener("click", () => {
+        const commentContainer = replyButton.parentNode.parentNode.parentNode;
+
+        if (commentContainer.nextElementSibling) {
+            if (commentContainer.nextElementSibling.classList.contains("add-reply")) {
+                return;
+            }
+        }
+
+        const referenceCommentID = commentContainer.id;
+
+        const addReplyForm = new AddReplyForm();
+        const addReplyFormContainer = addReplyForm.getContainer();
+
+        addReplyFormContainer.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = loggedUser.username;
+
+            const date = getCurrentDateTime();
+        
+            const textArea = addReplyFormContainer.querySelector(".new-comment-area");
+            const content = textArea.value;
+        
+            const newReplyData = { referenceCommentID, username, date, content };
+
+            try {
+                const response = await fetch("/add-new-reply", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newReplyData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error. Status: ${response.status}`);
+                }
+
+                const replyObj = await response.json();
+
+                if (replyObj.error) {
+                    throw replyObj;
+                }
+
+                const newReply = Reply.fromObj(replyObj);
+                const newReplyContainer = newReply.getContainer();
+
+                const mainCommentIDPattern = /^com-\d+$/;
+                const replyCommentIDPattern = /^com-\d+-\d+$/;
+
+                if (mainCommentIDPattern.test(newReply.toWhatReply.referenceComment.id)) {
+                    const repliesContainer = commentContainer.parentNode.querySelector(".replies-container");
+                    repliesContainer.appendChild(newReplyContainer);
+                }
+                else if (replyCommentIDPattern.test(newReply.toWhatReply.referenceComment.id)) {
+                    const repliesContainer = commentContainer.parentNode.parentNode;
+                    repliesContainer.appendChild(newReplyContainer);
+                }
+                else {
+                    throw "Unknown id format";
+                }
+
+                const newlyCreatedReplyButton = newReplyContainer.querySelector(".comment-reply-button");
+                initializeReplyButtonForLogged(newlyCreatedReplyButton, loggedUser);
+
+                addReplyFormContainer.remove();
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+
+        const cancelButton = addReplyFormContainer.querySelector(".cancel-comment-button");
+
+        cancelButton.addEventListener("click", () => {
+            const textArea = addReplyFormContainer.querySelector(".new-comment-area");
+            textArea.value = "";
+            addReplyFormContainer.remove();
+        });
+
+        if (commentContainer.nextSibling) {
+            commentContainer.parentNode.insertBefore(addReplyFormContainer, commentContainer.nextSibling);
+        }
+        else {
+            commentContainer.parentNode.appendChild(addReplyFormContainer);
+        }
+    });
+}
+
+function initializeReplyButtonForAnonymous(replyButton) {
+    replyButton.addEventListener("click", () => {
+        window.location.href = "./log-in";
+    });
 }

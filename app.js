@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const users = require('./users');
+const usersDB = require('./users-db');
 const commentsDB = require('./comments-db');
 
 let activeUser = null;
@@ -27,21 +27,21 @@ app.post('/submit-sign-up-data', async (req, res) => {
   const signUpData = req.body;
 
   try {
-    if (!users.usersExist()) {
-      await users.initializeUsers(signUpData);
+    if (!usersDB.usersExist()) {
+      await usersDB.initializeUsers(signUpData);
 
-      const foundUser = await users.findUser(signUpData.username);
+      const foundUser = await usersDB.findUser(signUpData.username);
       activeUser = foundUser;
 
       res.json({ initialized: 'initialized' });
     }
     else {
-      const foundUser = await users.findUser(signUpData.username);
+      const foundUser = await usersDB.findUser(signUpData.username);
 
       if (foundUser === undefined) {
-        await users.addUser(signUpData);
+        await usersDB.addUser(signUpData);
 
-        const auxFoundUser = await users.findUser(signUpData.username);
+        const auxFoundUser = await usersDB.findUser(signUpData.username);
         activeUser = auxFoundUser;
 
         res.json({ added: 'added' });
@@ -61,11 +61,11 @@ app.post('/submit-log-in-data', async (req, res) => {
   const logInData = req.body;
 
   try {
-    if (!users.usersExist()) {
+    if (!usersDB.usersExist()) {
       res.json({ error: 'database-not-found' });
     }
     else {
-      const foundUser = await users.findUser(logInData.username);
+      const foundUser = await usersDB.findUser(logInData.username);
 
       if (foundUser === undefined) {
         res.json({ error: 'username-not-found' });
@@ -134,6 +134,38 @@ app.get('/get-all-conversations', async (req, res) => {
   catch (error) {
     console.error(error);
     res.json({ error: 'get-all-conversations-error' });
+  }
+});
+
+app.post('/add-new-reply', async (req, res) => {
+  const newReplyData = req.body;
+
+  try {
+    const referenceCommentID = newReplyData.referenceCommentID;
+    
+    const referenceCommentObj = await commentsDB.getComment(referenceCommentID);
+  
+    const nextReplyID = await commentsDB.nextReplyID(referenceCommentID);
+  
+    const newCommentObj = {
+      id: nextReplyID,
+      username: newReplyData.username,
+      date: newReplyData.date,
+      content: newReplyData.content,
+      voteResult: 0
+    };
+  
+    const newReplyObj = { toWhatReply: referenceCommentObj, comment: newCommentObj };
+  
+    await commentsDB.addNewReply(newReplyObj);
+  
+    const foundReply = await commentsDB.getReply(nextReplyID);
+  
+    res.json(foundReply);
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ error: 'add-new-reply-error' });
   }
 });
 
