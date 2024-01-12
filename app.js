@@ -215,7 +215,7 @@ app.post('/vote', async (req, res) => {
     }
     else {
       throw "Unknown vote type";
-  ``}
+    }
 
     const votedComment = await commentsDB.getComment(commentID);
 
