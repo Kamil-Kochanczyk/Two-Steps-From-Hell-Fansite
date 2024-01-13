@@ -112,6 +112,9 @@ function initializeAddNewCommentForm(loggedUser) {
             const newlyCreatedVoteDownButton = newConversationContainer.querySelector(".comment-vote-down");
             initializeVoteButton(newlyCreatedVoteDownButton, loggedUser);
 
+            const newlyCreatedProfileLink = newConversationContainer.querySelector(".comment-username");
+            initializeProfileLink(newlyCreatedProfileLink);
+
             const postedCommentsContainer = document.getElementById("posted-comments-container");
             postedCommentsContainer.prepend(newConversationContainer);
         }
@@ -218,6 +221,12 @@ async function initializePostedCommentsSection(loggedUser) {
                 blockVoteButton(voteDownButton);
             }
         }
+
+        const profileLinks = document.getElementsByClassName("comment-username");
+
+        for (let profileLink of profileLinks) {
+            initializeProfileLink(profileLink);
+        }
     }
     catch (error) {
         throw error;
@@ -295,6 +304,9 @@ function initializeReplyButtonForLogged(replyButton, loggedUser) {
                 const newlyCreatedVoteDownButton = newReplyContainer.querySelector(".comment-vote-down");
                 initializeVoteButton(newlyCreatedVoteDownButton, loggedUser);
 
+                const newlyCreatedProfileLink = newReplyContainer.querySelector(".comment-username");
+                initializeProfileLink(newlyCreatedProfileLink);
+
                 addReplyFormContainer.remove();
             }
             catch (error) {
@@ -368,7 +380,6 @@ function initializeVoteButton(voteButton, loggedUser) {
             }
 
             const voteResult = jsonResponse.voteResult;
-            console.log(voteResult);
 
             const parentContainer = voteButton.parentNode;
 
@@ -438,4 +449,31 @@ async function colorizeVoteButtons(voteButtons, loggedUser) {
     catch (error) {
         throw error;
     }
+}
+
+function initializeProfileLink(profileLink) {
+    profileLink.addEventListener("click", async () => {
+        try {
+            const username = profileLink.textContent;
+
+            const response = await fetch("/set-profile-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error. Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+
+            if (responseData.error) {
+                throw responseData;
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    });
 }

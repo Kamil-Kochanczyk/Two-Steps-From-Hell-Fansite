@@ -69,3 +69,7 @@ document.getElementById("log-in-form").addEventListener("submit", (e) => {
         }
     });
 });
+
+document.getElementById("forgot-password").addEventListener("click", () => {
+    alert("Recover password funcionality has not been implemented yet");
+});

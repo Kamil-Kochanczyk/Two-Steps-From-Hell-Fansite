@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { promisify } = require('util');
-const PATH = 'users-db.json';
+const PATH = './databases/users-db.json';
 
 const writeFileAsync = promisify(fs.writeFile);
 const readFileAsync = promisify(fs.readFile);

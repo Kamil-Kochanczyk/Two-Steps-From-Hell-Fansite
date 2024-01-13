@@ -35,9 +35,37 @@ function initializeNavbar(activeUser) {
     }
 }
 
+function initializeProfileButton(activeUser) {
+    document.getElementById("profile").addEventListener("click", async () => {
+        try {
+            const username = activeUser.username;
+
+            const response = await fetch("/set-profile-user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error. Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+
+            if (responseData.error) {
+                throw responseData;
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     getActiveUser((activeUser) => {
         initializeNavbar(activeUser);
+        initializeProfileButton(activeUser);
     });
 });
 

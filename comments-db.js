@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { promisify } = require('util');
-const PATH = 'comments-db.json';
+const PATH = './databases/comments-db.json';
 
 const writeFileAsync = promisify(fs.writeFile);
 const readFileAsync = promisify(fs.readFile);

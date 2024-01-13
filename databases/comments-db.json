@@ -5,7 +5,7 @@
             "username": "Tuilindo05",
             "date": "12.01.2024 22:19",
             "content": "Hello everyone! Welcome to the Two Steps From Hell fansite!",
-            "voteResult": -2
+            "voteResult": -3
         },
         "replies": [
             {
@@ -48,7 +48,7 @@
                     "username": "Tuilindo05",
                     "date": "12.01.2024 22:21",
                     "content": "My favourite album is definitely \"Battlecry\".",
-                    "voteResult": 1
+                    "voteResult": 2
                 }
             },
             {
@@ -155,7 +155,7 @@
                     "username": "vc69",
                     "date": "12.01.2024 22:27",
                     "content": "My favourite one is probably \"Victory\".",
-                    "voteResult": -1
+                    "voteResult": -2
                 }
             },
             {
@@ -171,7 +171,7 @@
                     "username": "Tuilindo05",
                     "date": "12.01.2024 22:28",
                     "content": "\"Heart of Courage\"...",
-                    "voteResult": 1
+                    "voteResult": 2
                 }
             },
             {
@@ -187,6 +187,124 @@
                     "username": "Tuilindo05",
                     "date": "12.01.2024 22:29",
                     "content": "Yeah, this one is legendary...",
+                    "voteResult": 0
+                }
+            }
+        ]
+    },
+    {
+        "comment": {
+            "id": "com-4",
+            "username": "tsfh",
+            "date": "13.01.2024 11:06",
+            "content": "What is your favourite instrument?",
+            "voteResult": 0
+        },
+        "replies": [
+            {
+                "toWhatReply": {
+                    "id": "com-4",
+                    "username": "tsfh",
+                    "date": "13.01.2024 11:06",
+                    "content": "What is your favourite instrument?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-4-1",
+                    "username": "tsfh",
+                    "date": "13.01.2024 11:07",
+                    "content": "Mine is violin",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-4-1",
+                    "username": "tsfh",
+                    "date": "13.01.2024 11:07",
+                    "content": "Mine is violin",
+                    "voteResult": 1
+                },
+                "comment": {
+                    "id": "com-4-2",
+                    "username": "vc69",
+                    "date": "13.01.2024 11:09",
+                    "content": "Mine too",
+                    "voteResult": -1
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-4-2",
+                    "username": "vc69",
+                    "date": "13.01.2024 11:09",
+                    "content": "Mine too",
+                    "voteResult": -1
+                },
+                "comment": {
+                    "id": "com-4-3",
+                    "username": "Tuilindo05",
+                    "date": "13.01.2024 11:11",
+                    "content": "Only erhu!",
+                    "voteResult": 0
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-4-1",
+                    "username": "tsfh",
+                    "date": "13.01.2024 11:07",
+                    "content": "Mine is violin",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-4-4",
+                    "username": "Tuilindo05",
+                    "date": "13.01.2024 11:11",
+                    "content": "Only erhu!!!",
+                    "voteResult": 0
+                }
+            }
+        ]
+    },
+    {
+        "comment": {
+            "id": "com-5",
+            "username": "Tuilindo05",
+            "date": "13.01.2024 11:13",
+            "content": "What is your favourite music genre?",
+            "voteResult": 0
+        },
+        "replies": [
+            {
+                "toWhatReply": {
+                    "id": "com-5",
+                    "username": "Tuilindo05",
+                    "date": "13.01.2024 11:13",
+                    "content": "What is your favourite music genre?",
+                    "voteResult": 0
+                },
+                "comment": {
+                    "id": "com-5-1",
+                    "username": "Tuilindo05",
+                    "date": "13.01.2024 11:13",
+                    "content": "Mine is chinese",
+                    "voteResult": -1
+                }
+            },
+            {
+                "toWhatReply": {
+                    "id": "com-5-1",
+                    "username": "Tuilindo05",
+                    "date": "13.01.2024 11:13",
+                    "content": "Mine is chinese",
+                    "voteResult": -1
+                },
+                "comment": {
+                    "id": "com-5-2",
+                    "username": "vc69",
+                    "date": "13.01.2024 11:14",
+                    "content": "I prefer celtic",
                     "voteResult": 0
                 }
             }

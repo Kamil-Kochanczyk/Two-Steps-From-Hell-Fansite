@@ -7,6 +7,7 @@ const votingDB = require('./voting-db');
 const commentsDB = require('./comments-db');
 
 let activeUser = null;
+let profileUser = null;
 
 if (!usersDB.usersExist()) {
   usersDB.initializeUsers();
@@ -82,7 +83,7 @@ app.post('/submit-log-in-data', async (req, res) => {
 });
 
 app.get('/get-active-user', (req, res) => {
-  if (activeUser === null) {
+  if (activeUser === null || activeUser === undefined) {
     res.json(null);
   }
   else {
@@ -238,6 +239,32 @@ app.post('/get-user-votes', async (req, res) => {
   catch (error) {
     console.error(error);
     res.json({ error: 'get-user-votes-error' }); 
+  }
+});
+
+app.get('/get-profile-user', (req, res) => {
+  if (profileUser === null || profileUser === undefined) {
+    res.json(null);
+  }
+  else {
+    let username = profileUser.username;
+    let email = profileUser.email;
+    res.json({ username, email });
+  }
+});
+
+app.post('/set-profile-user', async (req, res) => {
+  const requestData = req.body;
+  const username = requestData.username;
+
+  try {
+    const foundUser = await usersDB.findUser(username);
+    profileUser = foundUser;
+    res.json({ set: 'set' });
+  }
+  catch (error) {
+    console.error(error);
+    res.json({ error: 'set-profile-user-error' }); 
   }
 });
 
