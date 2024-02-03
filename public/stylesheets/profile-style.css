@@ -1,0 +1,165 @@
+main {
+    text-align: center;
+    padding: 0 12px;
+}
+
+#profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 30px 0;
+}
+
+#profile-info > div {
+    margin: 8px 0;
+}
+
+#avatar-container-in-main {
+    width: 200px;
+}
+
+#avatar-container-in-main img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+#username-container {
+    font-size: 2.3em;
+}
+
+#email-container {
+    font-size: 1.15em;
+}
+
+#username-container, #email-container {
+    width: 100%;
+    max-width: 600px;
+    overflow: auto;
+    text-align: center;
+}
+
+#edit-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.edit-button {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #686868;
+    border-radius: 10px;
+    font-size: 1.05em;
+    width: 140px;
+}
+
+.edit-button:hover {
+    background-color: #00b270;
+}
+
+.edit-form {
+    background-color: #0d1117;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 0 0 30px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-container {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    align-self: flex-start;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+input {
+    color: white;
+    background-color: #1e2238;
+    border: 2px solid #1e2238;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 1.1em;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2f81f7;
+}
+
+.form-buttons-container {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-button {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 12px;
+    border: 1px solid #686868;
+    border-radius: 10px;
+    font-size: 1.05em;
+}
+
+.form-button:hover {
+    background-color: #00b270;
+}
+
+#error-box {
+    display: flex;
+    width: 400px;
+    height: 66px;
+    background-color: #26181d;
+    border: 1px solid #792e2e;
+    padding: 10px;
+    margin: 0 auto 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#error-box-x {
+    cursor: pointer;
+    color: #f85149;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3px;
+    right: 5px;
+}
+
+@media screen and (max-width: 450px) {
+    main {
+        margin: 0;
+    }
+
+    #error-box, .edit-form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    #avatar-container-in-main {
+        width: 66%;
+    }
+
+    #username-container {
+        font-size: 1.75em;
+    }
+
+    #email-container {
+        font-size: 1em;
+    }
+}

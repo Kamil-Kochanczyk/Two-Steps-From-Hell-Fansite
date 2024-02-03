@@ -46,7 +46,7 @@
                         <i class="fa fa-caret-down"></i>
                     </div>
                     <div id="nav-dropdown-content">
-                        <a id="profile" href="./profile?user=<%= loggedInUser %>">Profile</a>
+                        <a id="profile" href="./profile?username=<%= loggedInUserUsername %>">Profile</a>
                         <a id="log-out" href="./">Log Out</a>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
             <% } %>
         </div>
     </div>
-    <%- include(specificTemplate) %>
+    <%- include(specificTemplate, { data: subpageData }) %>
     <footer id="main-footer">
         <div id="main-footer-links">
             <div>
@@ -132,6 +132,8 @@
         </div>
     </footer>
     <script src="/scripts/index-script.js"></script>
-    <script src="/scripts/<%= specificScript %>-script.js"></script>
+    <% if (specificScript) { %>
+        <script src="/scripts/<%= specificScript %>-script.js"></script>
+    <% } %>
 </body>
 </html>

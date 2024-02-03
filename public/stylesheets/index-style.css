@@ -2,12 +2,20 @@
     box-sizing: border-box;
 }
 
+a, button, label {
+    cursor: pointer;
+}
+
 body {
     color: #dcdcdc;
     background-color: #1d1d2d;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 main {

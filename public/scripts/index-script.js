@@ -78,6 +78,30 @@ function setNavbarElementsOnPageLoad() {
     }
 }
 
+async function logOut() {
+    try {
+        const response = await fetch("/session-service/log-out", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        if (responseData.error) {
+            throw responseData.error;
+        }
+
+        return responseData;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 window.onload = () => {
     const navDropdown = document.getElementById("nav-dropdown");
 
@@ -101,6 +125,13 @@ window.onload = () => {
                 }
             }
         }
+
+        const logOutButton = document.getElementById("log-out");
+
+        logOutButton.addEventListener("click", async () => {
+            const responseData = await logOut();
+            console.table(responseData);
+        })
     }
 
     window.onresize = () => {
