@@ -44,6 +44,15 @@ class UsersDB {
         }
     }
 
+    static async setUsers(users) {
+        try {
+            await writeFileAsync(PATH, JSON.stringify(users, null, 4));
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
     static async addUser(user) {
         try {
             const users = await this.getUsers();
@@ -105,6 +114,71 @@ class UsersDB {
             else {
                 return null;
             }
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async setAttribute(username, attributeName, newValue) {
+        try {
+            const exists = await this.exists(username);
+
+            if (exists) {
+                const users = await this.getUsers();
+                const index = await this.findIndex(username);
+
+                if (attributeName === 'username') {
+                    users[index].username = newValue;
+                    await this.setUsers(users);
+                }
+                else if (attributeName === 'email') {
+                    users[index].email = newValue;
+                    await this.setUsers(users);
+                }
+                else if (attributeName === 'password') {
+                    users[index].password = newValue;
+                    await this.setUsers(users);
+                }
+                else {
+                    throw new Error('Unknown active user set attribute');
+                }
+
+                return newValue;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async setUsername(username, newUsername) {
+        try {
+            const result = await this.setAttribute(username, 'username', newUsername);
+            return result;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async setEmail(username, newEmail) {
+        try {
+            const result = await this.setAttribute(username, 'email', newEmail);
+            return result;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async setPassword(username, newPassword) {
+        try {
+            const result = await this.setAttribute(username, 'password', newPassword);
+            return result;
         }
         catch (error) {
             throw error;

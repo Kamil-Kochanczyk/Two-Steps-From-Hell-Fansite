@@ -10,51 +10,79 @@
             <%= data.email %>
         </div>
     </section>
-    <section id="edit-user-info">
-        <button id="edit-username" class="edit-button">Edit username</button>
-        <form id="edit-username-form" class="edit-form">
-            <div class="form-field-container">
-                <label for="newusername">New username:</label>
-                <input type="text" id="newusername" name="newusername" required>
+    <% if (data.showEditUserInfo) { %>
+        <section id="edit-user-info">
+            <% if (data.usernameChanged || data.emailChanged || data.passwordChanged) { %>
+                <div id="password-changed-box" class="success-box">
+                    <span class="success-box-text">
+                        <% if (data.usernameChanged) { %>
+                            Username
+                        <% } %>
+                        <% if (data.emailChanged) { %>
+                            Email
+                        <% } %>
+                        <% if (data.passwordChanged) { %>
+                            Password
+                        <% } %>
+                         changed successfully
+                    </span>
+                    <span class="success-box-x">&times;</span>
+                </div>
+            <% } %>
+            <button id="edit-username" class="edit-button">Edit username</button>
+            <div id="username-error-box" class="error-box">
+                <span class="error-box-text"></span>
+                <span class="error-box-x">&times;</span>
             </div>
-            <div class="form-field-container form-buttons-container">
-                <button id="ok-new-username" class="form-button" type="submit">OK</button>
-                <button id="cancel-new-username" class="form-button" type="reset">Cancel</button>
+            <form id="edit-username-form" class="edit-form">
+                <div class="form-field-container">
+                    <label for="newusername">New username:</label>
+                    <input type="text" id="newusername" name="newusername" required>
+                </div>
+                <div class="form-field-container form-buttons-container">
+                    <button id="ok-new-username" class="form-button" type="submit">OK</button>
+                    <button id="cancel-new-username" class="form-button" type="reset">Cancel</button>
+                </div>
+            </form>
+            <button id="edit-email" class="edit-button">Edit email</button>
+            <div id="email-error-box" class="error-box">
+                <span class="error-box-text"></span>
+                <span class="error-box-x">&times;</span>
             </div>
-        </form>
-        <button id="edit-email" class="edit-button">Edit email</button>
-        <form id="edit-email-form" class="edit-form">
-            <div class="form-field-container">
-                <label for="newemail">New email:</label>
-                <input type="email" id="newemail" name="newemail" required>
+            <form id="edit-email-form" class="edit-form">
+                <div class="form-field-container">
+                    <label for="newemail">New email:</label>
+                    <input type="email" id="newemail" name="newemail" required>
+                </div>
+                <div class="form-field-container form-buttons-container">
+                    <button id="ok-new-email" class="form-button" type="submit">OK</button>
+                    <button id="cancel-new-email" class="form-button" type="reset">Cancel</button>
+                </div>
+            </form>
+            <button id="edit-password" class="edit-button">Edit password</button>
+            <div id="password-error-box" class="error-box">
+                <span class="error-box-text"></span>
+                <span class="error-box-x">&times;</span>
             </div>
-            <div class="form-field-container form-buttons-container">
-                <button id="ok-new-email" class="form-button" type="submit">OK</button>
-                <button id="cancel-new-email" class="form-button" type="reset">Cancel</button>
-            </div>
-        </form>
-        <button id="edit-password" class="edit-button">Edit password</button>
-        <div id="error-box">
-            <span id="error-box-text">Error</span>
-            <span id="error-box-x">&times;</span>
-        </div>
-        <form id="edit-password-form" class="edit-form">
-            <div class="form-field-container">
-                <label for="currentpassword">Current password:</label>
-                <input type="password" id="currentpassword" name="currentpassword" required>
-            </div>
-            <div class="form-field-container">
-                <label for="newpassword">New password:</label>
-                <input type="password" id="newpassword" name="newpassword" required>
-            </div>
-            <div class="form-field-container">
-                <label for="repeatnewpassword">Reapeat new password:</label>
-                <input type="password" id="repeatnewpassword" name="repeatnewpassword" required>
-            </div>
-            <div class="form-field-container form-buttons-container">
-                <button id="ok-new-password" class="form-button" type="submit">OK</button>
-                <button id="cancel-new-password" class="form-button" type="reset">Cancel</button>
-            </div>
-        </form>
-    </section>
+            <form id="edit-password-form" class="edit-form">
+                <div class="form-field-container">
+                    <label for="currentpassword">Current password:</label>
+                    <input type="password" id="currentpassword" name="currentpassword" required>
+                    <div id="forgot-password">Forgot password?</div>
+                </div>
+                <div class="form-field-container">
+                    <label for="newpassword">New password:</label>
+                    <input type="password" id="newpassword" name="newpassword" required>
+                </div>
+                <div class="form-field-container">
+                    <label for="repeatnewpassword">Reapeat new password:</label>
+                    <input type="password" id="repeatnewpassword" name="repeatnewpassword" required>
+                </div>
+                <div class="form-field-container form-buttons-container">
+                    <button id="ok-new-password" class="form-button" type="submit">OK</button>
+                    <button id="cancel-new-password" class="form-button" type="reset">Cancel</button>
+                </div>
+            </form>
+        </section>
+    <% } %>
 </main>

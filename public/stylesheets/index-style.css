@@ -90,6 +90,7 @@ main {
 
 #nav-dropdown {
     height: 100%;
+    cursor: pointer;
 }
 
 #avatar-container {

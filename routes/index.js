@@ -57,13 +57,37 @@ router.get('/sign-up', (req, res) => {
 });
 
 router.get('/profile', async (req, res, next) => {
-    const username = req.query.username;
-    const exists = await UsersDB.exists(username);
+    const queryUsername = req.query.username;
+
+    let usernameModified = false;
+    let emailModified = false;
+    let passwordModified = false;
+
+    if (req.query.usernameChanged) {
+        usernameModified = req.query.usernameChanged;
+    }
+    if (req.query.emailChanged) {
+        emailModified = req.query.emailChanged;
+    }
+    if (req.query.passwordChanged) {
+        passwordModified = req.query.passwordChanged;
+    }
+
+    const exists = await UsersDB.exists(queryUsername);
 
     if (exists) {
-        const user = await UsersDB.getOneUser(username);
-        const subpageDataArg = { username: user.username, email: user.email };
-        loadPage(res, 'Profile', 'profile', 'profile', null, subpageDataArg);
+        const user = await UsersDB.getOneUser(queryUsername);
+        const activeUser = await ActiveUser.get();
+        const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
+        const subpageDataArg = {
+            username: user.username,
+            email: user.email,
+            showEditUserInfo: areTheSame,
+            usernameChanged: usernameModified,
+            emailChanged: emailModified,
+            passwordChanged: passwordModified
+        };
+        loadPage(res, 'Profile', 'profile', 'profile', 'profile', subpageDataArg);
     }
     else {
         next(createError(404));

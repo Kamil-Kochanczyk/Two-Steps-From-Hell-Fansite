@@ -63,12 +63,12 @@ main {
 }
 
 .edit-form {
+    display: none;
     background-color: #0d1117;
     border-radius: 8px;
     padding: 10px;
     margin: 0 0 30px;
     width: 400px;
-    display: flex;
     flex-direction: column;
 }
 
@@ -102,6 +102,7 @@ input:focus {
 .form-buttons-container {
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 5px;
 }
 
 .form-button {
@@ -118,8 +119,8 @@ input:focus {
     background-color: #00b270;
 }
 
-#error-box {
-    display: flex;
+.error-box {
+    display: none;
     width: 400px;
     height: 66px;
     background-color: #26181d;
@@ -131,7 +132,7 @@ input:focus {
     position: relative;
 }
 
-#error-box-x {
+.error-box-x {
     cursor: pointer;
     color: #f85149;
     font-size: 1.5em;
@@ -140,12 +141,45 @@ input:focus {
     right: 5px;
 }
 
+.success-box {
+    display: flex;
+    width: 400px;
+    height: 66px;
+    background-color: #1d292d;
+    border: 1px solid #295d45;
+    padding: 10px;
+    margin: 0 auto 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.success-box-x {
+    cursor: pointer;
+    color: #00c977;
+    font-size: 1.5em;
+    position: absolute;
+    top: -3px;
+    right: 5px;
+}
+
+#forgot-password {
+    align-self: flex-end;
+    margin-top: 5px;
+    color: #358dcb;
+    cursor: pointer;
+}
+
+#forgot-password:hover {
+    color: #00b270;
+}
+
 @media screen and (max-width: 450px) {
     main {
         margin: 0;
     }
 
-    #error-box, .edit-form {
+    .error-box, .edit-form {
         width: 100%;
     }
 }

@@ -32,6 +32,10 @@ class ActiveUser {
             throw error;
         }
     }
+
+    static async isEmpty() {
+        return JSON.stringify(await this.get()) === JSON.stringify({});
+    }
     
     static async get() {
         try {
@@ -53,8 +57,56 @@ class ActiveUser {
         }
     }
 
-    static async isEmpty() {
-        return JSON.stringify(await this.get()) === JSON.stringify({});
+    static async getAttribute(attributeName) {
+        try {
+            const activeUser = await this.get();
+
+            if (attributeName === 'username') {
+                return activeUser.username;
+            }
+            else if (attributeName === 'email') {
+                return activeUser.email;
+            }
+            else if (attributeName === 'password') {
+                return activeUser.password;
+            }
+            else {
+                throw new Error('Unknown active user get attribute');
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async getUsername() {
+        try {
+            const username = await this.getAttribute('username');
+            return username;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async getEmail() {
+        try {
+            const email = await this.getAttribute('email');
+            return email;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
+    static async getPassword() {
+        try {
+            const password = await this.getAttribute('password');
+            return password;
+        }
+        catch (error) {
+            throw error;
+        }
     }
 }
 
