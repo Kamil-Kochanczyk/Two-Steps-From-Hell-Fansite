@@ -31,7 +31,7 @@ function initializeEditUsername() {
                 const responseData = await response.json();
         
                 if (responseData.error) {
-                    throw responseData.error;
+                    throw new Error(responseData.error);
                 }
 
                 const username = responseData.username;
@@ -64,11 +64,16 @@ function initializeEditUsername() {
             const responseData = await response.json();
     
             if (responseData.error) {
-                throw responseData.error;
+                throw new Error(responseData.error);
             }
 
             if (responseData.newUsername === null) {
                 throw new Error("Value returned from server is null");
+            }
+
+            if (responseData.usernameAlreadyTaken) {
+                showErrorBox("username-error-box", "This username is already taken");
+                return;
             }
 
             const responseUsername = responseData.newUsername;
@@ -119,7 +124,7 @@ function initializeEditEmail() {
                 const responseData = await response.json();
         
                 if (responseData.error) {
-                    throw responseData.error;
+                    throw new Error(responseData.error);
                 }
 
                 const email = responseData.email;
@@ -152,7 +157,7 @@ function initializeEditEmail() {
             const responseData = await response.json();
     
             if (responseData.error) {
-                throw responseData.error;
+                throw new Error(responseData.error);
             }
 
             if (responseData.newEmail === null) {
@@ -216,7 +221,7 @@ function initializeEditPassword() {
             }
     
             if (getResponse.error) {
-                throw getResponse.error;
+                throw new Error(getResponse.error);
             }
 
             const getResponseData = await getResponse.json();
@@ -244,7 +249,7 @@ function initializeEditPassword() {
             const postResponseData = await postResponse.json();
     
             if (postResponseData.error) {
-                throw postResponseData.error;
+                throw new Error(postResponseData.error);
             }
 
             const responsePassword = postResponseData.newPassword;
@@ -281,10 +286,49 @@ function initializeEditPassword() {
     });
 }
 
+function initializeDeleteAccount() {
+    const deleteAccountButton = document.getElementById("delete-account");
+
+    deleteAccountButton.addEventListener("click", async () => {
+        const confirmation = confirm("Are you sure you want to delete your account? This action cannot be undone!");
+
+        if (confirmation) {
+            try {
+                const response = await fetch("/session-service/delete", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                });
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error. Status: ${response.status}`);
+                }
+        
+                const responseData = await response.json();
+        
+                if (responseData.error) {
+                    throw new Error(responseData.error);
+                }
+
+                if (responseData.deletedUsers === 1) {
+                    window.location.href = "/";
+                }
+                else {
+                    throw new Error('Deleted users count is not 1');
+                }
+            }
+            catch (error) {
+                console.error(error);
+                showErrorBox("delete-account-error-box", "Unexpected error occurred");
+            }
+        }
+    });
+}
+
 function initializeEditUserInfo() {
     initializeEditUsername();
     initializeEditEmail();
     initializeEditPassword();
+    initializeDeleteAccount();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

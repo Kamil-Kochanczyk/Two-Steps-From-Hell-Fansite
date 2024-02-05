@@ -23,7 +23,7 @@ async function submitSignUpData() {
         const responseData = await response.json();
 
         if (responseData.error) {
-            throw responseData.error;
+            throw new Error(responseData.error);
         }
 
         return responseData;
@@ -64,10 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "/";
             }
             catch (error) {
-                if (error === "username-already-exists") {
+                if (error.message === "username-already-exists") {
                     showErrorBox("This username already exists");
                 }
-                else if (error === "sign-up-service-submit-error") {
+                else if (error.message === "sign-up-service-submit-error") {
                     showErrorBox("Server error");
                 }
                 else {

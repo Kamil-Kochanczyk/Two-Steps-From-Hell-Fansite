@@ -34,7 +34,12 @@ class ActiveUser {
     }
 
     static async isEmpty() {
-        return JSON.stringify(await this.get()) === JSON.stringify({});
+        try {
+            return JSON.stringify(await this.get()) === JSON.stringify({});
+        }
+        catch (error) {
+            throw error;
+        }
     }
     
     static async get() {
@@ -71,7 +76,7 @@ class ActiveUser {
                 return activeUser.password;
             }
             else {
-                throw new Error('Unknown active user get attribute');
+                throw new Error('Unknown attribute');
             }
         }
         catch (error) {

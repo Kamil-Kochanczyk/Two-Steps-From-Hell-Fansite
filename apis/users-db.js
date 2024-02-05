@@ -57,7 +57,7 @@ class UsersDB {
         try {
             const users = await this.getUsers();
             users.push(user);
-            await writeFileAsync(PATH, JSON.stringify(users, null, 4));
+            await this.setUsers(users);
         }
         catch (error) {
             throw error;
@@ -120,13 +120,31 @@ class UsersDB {
         }
     }
 
+    static async deleteOneUser(username) {
+        try {
+            const index = await this.findIndex(username);
+
+            if (index !== -1) {
+                const users = await this.getUsers();
+                users.splice(index, 1);
+                await this.setUsers(users);
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
     static async setAttribute(username, attributeName, newValue) {
         try {
-            const exists = await this.exists(username);
+            const index = await this.findIndex(username);
 
-            if (exists) {
+            if (index !== -1) {
                 const users = await this.getUsers();
-                const index = await this.findIndex(username);
 
                 if (attributeName === 'username') {
                     users[index].username = newValue;
@@ -141,7 +159,7 @@ class UsersDB {
                     await this.setUsers(users);
                 }
                 else {
-                    throw new Error('Unknown active user set attribute');
+                    throw new Error('Unknown attribute');
                 }
 
                 return newValue;

@@ -92,7 +92,7 @@ async function logOut() {
         const responseData = await response.json();
 
         if (responseData.error) {
-            throw responseData.error;
+            throw new Error(responseData.error);
         }
 
         return responseData;
@@ -129,8 +129,13 @@ window.onload = () => {
         const logOutButton = document.getElementById("log-out");
 
         logOutButton.addEventListener("click", async () => {
-            const responseData = await logOut();
-            console.table(responseData);
+            try {
+                const responseData = await logOut();
+                console.table(responseData);
+            }
+            catch (error) {
+                console.error(error);
+            }
         })
     }
 

@@ -22,7 +22,7 @@ async function submitLogInData() {
         const responseData = await response.json();
 
         if (responseData.error) {
-            throw responseData.error;
+            throw new Error(responseData.error);
         }
 
         return responseData;
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "/";
         }
         catch (error) {
-            if (error === "username-not-found") {
+            if (error.message === "username-not-found") {
                 showErrorBox("This username doesn't exist");
             }
-            else if (error === "incorrect-password") {
+            else if (error.message === "incorrect-password") {
                 showErrorBox("Incorrect password");
             }
             else {

@@ -19,7 +19,7 @@ router.post('/log-in', async (req, res) => {
         }
         else {
             const activeUser = await UsersDB.getOneUser(username);
-            ActiveUser.set(activeUser);
+            await ActiveUser.set(activeUser);
             
             const activeUserUsername = activeUser.username;
             const activeUserEmail = activeUser.email;
@@ -73,9 +73,17 @@ router.post('/edit/:attribute', async (req, res) => {
 
     try {
         if (attribute === 'username') {
-            returnedValue = await UsersDB.setUsername(activeUser.username, newValue);
-            await ActiveUser.set(await UsersDB.getOneUser(returnedValue));
-            res.json({ newUsername: returnedValue });
+            const userWithThisUsername = await UsersDB.getOneUser(newValue);
+            const usernameAlreadyExists = userWithThisUsername !== null;
+
+            if (usernameAlreadyExists && JSON.stringify(userWithThisUsername) !== JSON.stringify(activeUser)) {
+                res.json({ usernameAlreadyTaken: true });
+            }
+            else {
+                returnedValue = await UsersDB.setUsername(activeUser.username, newValue);
+                await ActiveUser.set(await UsersDB.getOneUser(returnedValue));
+                res.json({ newUsername: returnedValue });
+            }
         }
         else if (attribute === 'email') {
             returnedValue = await UsersDB.setEmail(activeUser.username, newValue);
@@ -97,9 +105,35 @@ router.post('/edit/:attribute', async (req, res) => {
     }
 });
 
+router.post('/delete', async (req, res) => {
+    try {
+        const activeUserUsername = await ActiveUser.getUsername();
+        const deletedUsers = await UsersDB.deleteOneUser(activeUserUsername);
+
+        if (deletedUsers === 1) {
+            await ActiveUser.set({});
+        }
+        else {
+            throw new Error('User could not be deleted');
+        }
+
+        res.json({ deletedUsers });
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'session-service-delete-error' });
+    }
+});
+
 router.post('/log-out', async (req, res) => {
-    await ActiveUser.set({});
-    res.json({});
+    try {
+        await ActiveUser.set({});
+        res.json({});
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'session-service-log-out-error' });
+    }
 });
 
 module.exports = router;
