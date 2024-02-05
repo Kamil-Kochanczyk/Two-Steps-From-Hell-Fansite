@@ -219,12 +219,12 @@ function initializeEditPassword() {
             if (!getResponse.ok) {
                 throw new Error(`HTTP error. Status: ${getResponse.status}`);
             }
-    
-            if (getResponse.error) {
-                throw new Error(getResponse.error);
-            }
 
             const getResponseData = await getResponse.json();
+
+            if (getResponseData.error) {
+                throw new Error(getResponseData.error);
+            }
 
             if (getResponseData.password !== currentPassword) {
                 showErrorBox("password-error-box", "Incorrect current password value");
