@@ -5,36 +5,11 @@ function showErrorBox(errorBoxID, message) {
     errorBox.style.display = "flex";
 }
 
-function createLink(mainLink, queryArgs) {
-    const queryString = Object.entries(queryArgs).map(([key, value]) => {
-        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-    }).join('&');
-  
-    return `${mainLink}?${queryString}`;
-}
-
-async function createReloadLink(additionalQueryArgs) {
-    try {
-        const response = await fetch("/session-service/username");
-
-        if (!response.ok) {
-            throw new Error(`HTTP error. Status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
-
-        if (responseData.error) {
-            throw responseData.error;
-        }
-
-        const mainLink = "./profile";
-        const requiredQueryArgs = { username: responseData.username };
-        const queryArgs = { ...requiredQueryArgs, ...additionalQueryArgs };
-        return createLink(mainLink, queryArgs);
-    }
-    catch (error) {
-        throw error;
-    }
+function showSuccessBox(successBoxID, message) {
+    const successBox = document.getElementById(successBoxID);
+    const successBoxText = successBox.querySelector(".success-box-text");
+    successBoxText.innerHTML = message;
+    successBox.style.display = "flex";
 }
 
 function initializeEditUsername() {
@@ -100,7 +75,13 @@ function initializeEditUsername() {
             usernameContainer.innerHTML = responseUsername;
             editUsernameForm.style.display = "";
             
-            window.location.href = await createReloadLink({ usernameChanged: true });
+            showSuccessBox("success-change-box", "Username changed successfully");
+
+            document.getElementById("username-error-box").querySelector(".error-box-x").click();
+            
+            setTimeout(() => {
+                window.location.href = `/profile/${responseUsername}`;
+            }, 1000);
         }
         catch (error) {
             console.error(error);
@@ -182,7 +163,9 @@ function initializeEditEmail() {
             emailContainer.innerHTML = responseEmail;
             editEmailForm.style.display = "";
 
-            window.location.href = await createReloadLink({ emailChanged: true });
+            showSuccessBox("success-change-box", "Email changed successfully");
+
+            document.getElementById("email-error-box").querySelector(".error-box-x").click();
         }
         catch (error) {
             console.error(error);
@@ -211,6 +194,9 @@ function initializeEditPassword() {
 
     editPasswordButton.addEventListener("click", () => {
         if (editPasswordForm.style.display !== "flex") {
+            currentPasswordInputField.value = "";
+            newPasswordInputField.value = "";
+            repeatNewPasswordInputField.value = "";
             editPasswordForm.style.display = "flex";
         }
     });
@@ -270,7 +256,9 @@ function initializeEditPassword() {
             if (responsePassword === newPassword) {
                 editPasswordForm.style.display = "";
 
-                window.location.href = await createReloadLink({ passwordChanged: true });
+                showSuccessBox("success-change-box", "Password changed successfully");
+
+                document.getElementById("password-error-box").querySelector(".error-box-x").click();
             }
             else {
                 throw new Error('Incorrect response from server');
@@ -317,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (successBoxX) {
             successBoxX.addEventListener("click", () => {
-                successBoxX.parentNode.style.display = "none";
+                successBoxX.parentNode.style.display = "";
             });
         }
 

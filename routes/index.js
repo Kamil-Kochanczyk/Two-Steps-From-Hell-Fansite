@@ -48,45 +48,31 @@ router.get('/news', (req, res) => {
     loadPage(res, 'News', 'news', 'news', null, null);
 });
 
-router.get('/log-in', (req, res) => {
-    loadPage(res, 'Log In', 'log-in', 'log-in', 'log-in', null);
+router.get('/log-in', async (req, res) => {
+    const subpageDataArg = { showMain: (await ActiveUser.isEmpty()) };
+    loadPage(res, 'Log In', 'log-in', 'log-in', 'log-in', subpageDataArg);
 });
 
-router.get('/sign-up', (req, res) => {
-    loadPage(res, 'Sign Up', 'sign-up', 'sign-up', 'sign-up', null);
+router.get('/sign-up', async (req, res) => {
+    const subpageDataArg = { showMain: (await ActiveUser.isEmpty()) };
+    loadPage(res, 'Sign Up', 'sign-up', 'sign-up', 'sign-up', subpageDataArg);
 });
 
-router.get('/profile', async (req, res, next) => {
-    const queryUsername = req.query.username;
+router.get('/profile/:username', async (req, res, next) => {
+    const paramUsername = req.params.username;
 
-    let usernameModified = false;
-    let emailModified = false;
-    let passwordModified = false;
-
-    if (req.query.usernameChanged) {
-        usernameModified = req.query.usernameChanged;
-    }
-    if (req.query.emailChanged) {
-        emailModified = req.query.emailChanged;
-    }
-    if (req.query.passwordChanged) {
-        passwordModified = req.query.passwordChanged;
-    }
-
-    const exists = await UsersDB.exists(queryUsername);
+    const exists = await UsersDB.exists(paramUsername);
 
     if (exists) {
-        const user = await UsersDB.getOneUser(queryUsername);
+        const user = await UsersDB.getOneUser(paramUsername);
         const activeUser = await ActiveUser.get();
         const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
         const subpageDataArg = {
             username: user.username,
             email: user.email,
             showEditUserInfo: areTheSame,
-            usernameChanged: usernameModified,
-            emailChanged: emailModified,
-            passwordChanged: passwordModified
         };
+        
         loadPage(res, 'Profile', 'profile', 'profile', 'profile', subpageDataArg);
     }
     else {

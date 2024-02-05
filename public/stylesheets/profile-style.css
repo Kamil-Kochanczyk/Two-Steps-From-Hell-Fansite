@@ -137,12 +137,12 @@ input:focus {
     color: #f85149;
     font-size: 1.5em;
     position: absolute;
-    top: -3px;
-    right: 5px;
+    top: -6px;
+    right: 3px;
 }
 
 .success-box {
-    display: flex;
+    display: none;
     width: 400px;
     height: 66px;
     background-color: #1d292d;
@@ -159,8 +159,8 @@ input:focus {
     color: #00c977;
     font-size: 1.5em;
     position: absolute;
-    top: -3px;
-    right: 5px;
+    top: -6px;
+    right: 3px;
 }
 
 #forgot-password {
@@ -179,7 +179,7 @@ input:focus {
         margin: 0;
     }
 
-    .error-box, .edit-form {
+    .error-box, .success-box, .edit-form {
         width: 100%;
     }
 }

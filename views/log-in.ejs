@@ -1,21 +1,23 @@
-<main>
-    <h1 id="header1">Log In</h1>
-    <div id="error-box">
-        <span id="error-box-text"></span>
-        <span id="error-box-x">&times;</span>
-    </div>
-    <form id="log-in-form" method="post">
-        <div class="form-field-container">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+<% if (data.showMain) { %>
+    <main>
+        <h1 id="header1">Log In</h1>
+        <div id="error-box">
+            <span id="error-box-text"></span>
+            <span id="error-box-x">&times;</span>
         </div>
-        <div class="form-field-container">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <div id="forgot-password">Forgot password?</div>
-        </div>
-        <div class="form-field-container">
-            <button id="submit-button" type="submit">Log In</button>
-        </div>
-    </form>
-</main>
+        <form id="log-in-form" method="post">
+            <div class="form-field-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-field-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div id="forgot-password">Forgot password?</div>
+            </div>
+            <div class="form-field-container">
+                <button id="submit-button" type="submit">Log In</button>
+            </div>
+        </form>
+    </main>
+<% } %>

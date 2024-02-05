@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const responseData = await submitLogInData();
             console.table(responseData);
-            window.location.href = "./";
+            window.location.href = "/";
         }
         catch (error) {
             if (error === "username-not-found") {

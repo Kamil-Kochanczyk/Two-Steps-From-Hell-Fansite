@@ -12,23 +12,10 @@
     </section>
     <% if (data.showEditUserInfo) { %>
         <section id="edit-user-info">
-            <% if (data.usernameChanged || data.emailChanged || data.passwordChanged) { %>
-                <div id="password-changed-box" class="success-box">
-                    <span class="success-box-text">
-                        <% if (data.usernameChanged) { %>
-                            Username
-                        <% } %>
-                        <% if (data.emailChanged) { %>
-                            Email
-                        <% } %>
-                        <% if (data.passwordChanged) { %>
-                            Password
-                        <% } %>
-                         changed successfully
-                    </span>
-                    <span class="success-box-x">&times;</span>
-                </div>
-            <% } %>
+            <div id="success-change-box" class="success-box">
+                <span class="success-box-text"></span>
+                <span class="success-box-x">&times;</span>
+            </div>
             <button id="edit-username" class="edit-button">Edit username</button>
             <div id="username-error-box" class="error-box">
                 <span class="error-box-text"></span>

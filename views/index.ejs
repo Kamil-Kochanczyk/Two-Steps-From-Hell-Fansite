@@ -16,25 +16,25 @@
 <body>
     <div id="navbar-container">
         <button id="navbar-toggle" type="button" onclick="toggleNavbar()">Show menu</button>
-        <a id="navbar-logo" href="./">
+        <a id="navbar-logo" href="/">
             <img src="/images/tsfh-logo.jpg" alt="TSFH">
         </a>
         <nav id="navbar-links">
             <ul>
                 <li>
-                    <a href="./">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="./founders">Founders</a>
+                    <a href="/founders">Founders</a>
                 </li>
                 <li>
-                    <a href="./albums">Albums</a>
+                    <a href="/albums">Albums</a>
                 </li>
                 <li>
-                    <a href="./news">News</a>
+                    <a href="/news">News</a>
                 </li>
                 <li>
-                    <a href="./comments">Comments</a>
+                    <a href="/comments">Comments</a>
                 </li>
             </ul>
         </nav>
@@ -46,14 +46,14 @@
                         <i class="fa fa-caret-down"></i>
                     </div>
                     <div id="nav-dropdown-content">
-                        <a id="profile" href="./profile?username=<%= loggedInUserUsername %>">Profile</a>
-                        <a id="log-out" href="./">Log Out</a>
+                        <a id="profile" href="/profile/<%= loggedInUserUsername %>">Profile</a>
+                        <a id="log-out" href="/">Log Out</a>
                     </div>
                 </div>
             <% } else { %>
                 <div id="user-init-links">
-                    <a id="login" href="./log-in">Log In</a>
-                    <a id="signup" href="./sign-up">Sign Up</a>
+                    <a id="login" href="/log-in">Log In</a>
+                    <a id="signup" href="/sign-up">Sign Up</a>
                 </div>
             <% } %>
         </div>
@@ -65,19 +65,19 @@
                 <h4>Menu</h4>
                 <ul>
                     <li>
-                        <a class="main-footer-link" href="./">Home</a>
+                        <a class="main-footer-link" href="/">Home</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./founders">Founders</a>
+                        <a class="main-footer-link" href="/founders">Founders</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./albums">Albums</a>
+                        <a class="main-footer-link" href="/albums">Albums</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./news">News</a>
+                        <a class="main-footer-link" href="/news">News</a>
                     </li>
                     <li>
-                        <a class="main-footer-link" href="./comments">Comments</a>
+                        <a class="main-footer-link" href="/comments">Comments</a>
                     </li>
                 </ul>
             </div>

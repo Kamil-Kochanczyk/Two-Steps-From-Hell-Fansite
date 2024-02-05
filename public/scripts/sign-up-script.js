@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const responseData = await submitSignUpData();
                 console.table(responseData);
-                window.location.href = "./";
+                window.location.href = "/";
             }
             catch (error) {
                 if (error === "username-already-exists") {
