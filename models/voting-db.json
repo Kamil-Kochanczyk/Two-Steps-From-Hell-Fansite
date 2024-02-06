@@ -1,0 +1,28 @@
+[
+    {
+        "username": "vc69",
+        "likes": [
+            "com-1",
+            "com-1-1",
+            "com-1-2"
+        ],
+        "dislikes": [
+            "com-2",
+            "com-2-1",
+            "com-3-1"
+        ]
+    },
+    {
+        "username": "tsfh",
+        "likes": [
+            "com-1",
+            "com-1-1",
+            "com-3-2"
+        ],
+        "dislikes": [
+            "com-1-2",
+            "com-2",
+            "com-2-1"
+        ]
+    }
+]

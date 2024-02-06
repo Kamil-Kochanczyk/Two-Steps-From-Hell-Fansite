@@ -32,6 +32,25 @@ router.post('/log-in', async (req, res) => {
     }
 });
 
+router.get('/user', async (req, res) => {
+    try {
+        const isEmpty = await ActiveUser.isEmpty();
+
+        if (!isEmpty) {
+            const username = await ActiveUser.getUsername();
+            const email = await ActiveUser.getEmail();
+            res.json({ username, email });
+        }
+        else {
+            res.json({ isEmpty: true });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'session-service-user-error' });
+    }
+});
+
 router.get('/username', async (req, res) => {
     try {
         const activeUserUsername = await ActiveUser.getUsername();

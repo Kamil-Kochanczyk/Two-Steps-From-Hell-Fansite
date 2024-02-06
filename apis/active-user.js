@@ -45,8 +45,7 @@ class ActiveUser {
     static async get() {
         try {
             const data = await readFileAsync(PATH, 'utf-8');
-            const activeUser = JSON.parse(data);
-            return activeUser;
+            return JSON.parse(data);
         }
         catch (error) {
             throw error;

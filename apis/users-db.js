@@ -36,8 +36,7 @@ class UsersDB {
     static async getUsers() {
         try {
             const data = await readFileAsync(PATH, 'utf-8');
-            const users = JSON.parse(data);
-            return users;
+            return JSON.parse(data);
         }
         catch (error) {
             throw error;
@@ -67,8 +66,7 @@ class UsersDB {
     static async findIndex(username) {
         try {
             const users = await this.getUsers();
-            const index = users.findIndex(user => user.username === username);
-            return index;
+            return users.findIndex(user => user.username === username);
         }
         catch (error) {
             throw error;
@@ -91,8 +89,7 @@ class UsersDB {
 
             if (index !== -1) {
                 const users = await this.getUsers();
-                const isPasswordCorrect = users[index].password === password;
-                return isPasswordCorrect;
+                return users[index].password === password;
             }
             else {
                 return false;

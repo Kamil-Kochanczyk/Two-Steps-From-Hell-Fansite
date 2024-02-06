@@ -77,6 +77,16 @@ router.get('/news', (req, res) => {
     }
 });
 
+router.get('/comments', (req, res) => {
+    try {
+        loadPage(res, 'Comments', 'comments', 'comments', 'comments', null);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-comments-error' });
+    }
+});
+
 router.get('/log-in', async (req, res) => {
     try {
         const subpageDataArg = { showMain: (await ActiveUser.isEmpty()) };
@@ -108,7 +118,8 @@ router.get('/profile/:username', async (req, res, next) => {
         if (exists) {
             const user = await UsersDB.getOneUser(paramUsername);
             const activeUser = await ActiveUser.get();
-            const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
+            const areTheSame = false;
+            // const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
             const subpageDataArg = {
                 username: user.username,
                 email: user.email,

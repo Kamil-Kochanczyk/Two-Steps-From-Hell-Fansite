@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const UsersDB = require('../apis/users-db');
+const VotingDB = require('../apis/voting-db');
 const ActiveUser = require('../apis/active-user');
 
 router.post('/submit', async (req, res) => {
@@ -12,7 +13,7 @@ router.post('/submit', async (req, res) => {
 
         if (!exists) {
             await UsersDB.addUser({ username, email, password });
-            // await votingDB.initializeUserEntry(username);
+            await VotingDB.initializeEntry(username);
             await ActiveUser.set({ username, email, password });
             res.json({ username, email });
         }
