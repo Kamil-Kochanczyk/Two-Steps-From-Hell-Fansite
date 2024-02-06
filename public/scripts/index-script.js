@@ -118,10 +118,10 @@ window.onload = () => {
             const clickedDiv = e.target.matches("#avatar-container");
         
             if (!clickedImg && !clickedFa && !clickedDiv) {
-                const navDropdown = document.getElementById("nav-dropdown-content");
+                const navDropdownContent = document.getElementById("nav-dropdown-content");
         
-                if (navDropdown.classList.contains("show-block")) {
-                    navDropdown.classList.remove("show-block");
+                if (navDropdownContent.classList.contains("show-block")) {
+                    navDropdownContent.classList.remove("show-block");
                 }
             }
         }
