@@ -8,12 +8,11 @@ router.post('/submit', async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-        const exists = await UsersDB.exists(username);
+        const exists = await UsersDB.exists(req.models.UsersDB, username);
 
         if (!exists) {
-            await UsersDB.addUser({ username, email, password });
-            // await votingDB.initializeUserEntry(username);
-            await ActiveUser.set({ username, email, password });
+            await UsersDB.addUser(req.models.UsersDB, { username, email, password });
+            await ActiveUser.set(req.models.ActiveUser, { username, email, password });
             res.json({ username, email });
         }
         else {

@@ -3,12 +3,44 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const { Sequelize } = require('sequelize');
 
 const indexRouter = require('./routes/index');
 const signUpServiceRouter = require('./routes/sign-up-service');
 const sessionServiceRouter = require('./routes/session-service');
 
 const app = express();
+
+const sequelize = new Sequelize({
+    dialect: 'mysql',
+    username: 'kamil',
+    password: 'kamil',
+    database: 'tsfhfansite',
+    host: 'localhost',
+});
+
+const models = {
+    UsersDB: require('./models/users-db')(sequelize),
+    ActiveUser: require('./models/active-user')(sequelize)
+};
+
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully');
+        await sequelize.sync();
+        console.log('Database synchronized');
+    }
+    catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+})();
+
+app.use((req, res, next) => {
+    req.sequelize = sequelize;
+    req.models = models;
+    next();
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

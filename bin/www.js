@@ -1,18 +1,5 @@
 #!/usr/bin/env node
 
-const UsersDB = require('../apis/users-db');
-const ActiveUser = require('../apis/active-user');
-
-const apis = [UsersDB, ActiveUser];
-
-apis.forEach(async (api) => {
-    const isInitialized = await api.isInitialized();
-
-    if (!isInitialized) {
-        await api.initialize();
-    }
-});
-
 const app = require('../app');
 const debug = require('debug')('two-steps-from-hell-fansite:server');
 const http = require('http');

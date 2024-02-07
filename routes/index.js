@@ -6,77 +6,124 @@ const ActiveUser = require('../apis/active-user');
 
 const createError = require('http-errors');
 
-async function loadPage(res, titleArg, templateArg, styleArg, scriptArg, subpageDataArg) {
-    let loggedInArg;
-    let loggedInUserUsernameArg;
+async function loadPage(req, res, titleArg, templateArg, styleArg, scriptArg, subpageDataArg) {
+    try {
+        let loggedInArg;
+        let loggedInUserUsernameArg;
+        
+        const isEmpty = await ActiveUser.isEmpty(req.models.ActiveUser);
     
-    const isEmpty = await ActiveUser.isEmpty();
-
-    if (isEmpty) {
-        loggedInArg = false;
-        loggedInUserUsernameArg = '';
+        if (isEmpty) {
+            loggedInArg = false;
+            loggedInUserUsernameArg = '';
+        }
+        else {
+            loggedInArg = true;
+            loggedInUserUsernameArg = (await ActiveUser.get(req.models.ActiveUser)).username;
+        }
+    
+        res.render('index', {
+            title: titleArg,
+            specificTemplate: templateArg,
+            specificStyle: styleArg,
+            specificScript: scriptArg,
+            loggedIn: loggedInArg,
+            loggedInUserUsername: loggedInUserUsernameArg,
+            subpageData: subpageDataArg
+        });
     }
-    else {
-        loggedInArg = true;
-        loggedInUserUsernameArg = (await ActiveUser.get()).username;
+    catch (error) {
+        throw error;
     }
-
-    res.render('index', {
-        title: titleArg,
-        specificTemplate: templateArg,
-        specificStyle: styleArg,
-        specificScript: scriptArg,
-        loggedIn: loggedInArg,
-        loggedInUserUsername: loggedInUserUsernameArg,
-        subpageData: subpageDataArg
-    });
 }
 
 router.get('/', (req, res) => {
-    loadPage(res, 'Home', 'home', 'home', null, null);
+    try {
+        loadPage(req, res, 'Home', 'home', 'home', null, null);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-home-error '})
+    }
 });
 
 router.get('/founders', (req, res) => {
-    loadPage(res, 'Founders', 'founders', 'founders', null, null);
+    try {
+        loadPage(req, res, 'Founders', 'founders', 'founders', null, null);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-founders-error '})
+    }
 });
 
 router.get('/albums', (req, res) => {
-    loadPage(res, 'Albums', 'albums', 'albums', 'albums', null);
+    try {
+        loadPage(req, res, 'Albums', 'albums', 'albums', 'albums', null);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-albums-error '})
+    }
 });
 
 router.get('/news', (req, res) => {
-    loadPage(res, 'News', 'news', 'news', null, null);
+    try {
+        loadPage(req, res, 'News', 'news', 'news', null, null);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-news-error '})
+    }
 });
 
 router.get('/log-in', async (req, res) => {
-    const subpageDataArg = { showMain: (await ActiveUser.isEmpty()) };
-    loadPage(res, 'Log In', 'log-in', 'log-in', 'log-in', subpageDataArg);
+    try {
+        const subpageDataArg = { showMain: (await ActiveUser.isEmpty(req.models.ActiveUser)) };
+        loadPage(req, res, 'Log In', 'log-in', 'log-in', 'log-in', subpageDataArg);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-log-in-error '})
+    }
 });
 
 router.get('/sign-up', async (req, res) => {
-    const subpageDataArg = { showMain: (await ActiveUser.isEmpty()) };
-    loadPage(res, 'Sign Up', 'sign-up', 'sign-up', 'sign-up', subpageDataArg);
+    try {
+        const subpageDataArg = { showMain: (await ActiveUser.isEmpty(req.models.ActiveUser)) };
+        loadPage(req, res, 'Sign Up', 'sign-up', 'sign-up', 'sign-up', subpageDataArg);
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-sign-up-error '})
+    }
 });
 
 router.get('/profile/:username', async (req, res, next) => {
-    const paramUsername = req.params.username;
+    try {
+        const paramUsername = req.params.username;
 
-    const exists = await UsersDB.exists(paramUsername);
-
-    if (exists) {
-        const user = await UsersDB.getOneUser(paramUsername);
-        const activeUser = await ActiveUser.get();
-        const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
-        const subpageDataArg = {
-            username: user.username,
-            email: user.email,
-            showEditUserInfo: areTheSame,
-        };
-        
-        loadPage(res, 'Profile', 'profile', 'profile', 'profile', subpageDataArg);
+        const exists = await UsersDB.exists(req.models.UsersDB, paramUsername);
+    
+        if (exists) {
+            const user = await UsersDB.getOneUser(req.models.UsersDB, paramUsername);
+            const activeUser = await ActiveUser.get(req.models.ActiveUser);
+            const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
+            const subpageDataArg = {
+                username: user.username,
+                email: user.email,
+                showEditUserInfo: areTheSame,
+            };
+            
+            loadPage(req, res, 'Profile', 'profile', 'profile', 'profile', subpageDataArg);
+        }
+        else {
+            next(createError(404));
+        }
     }
-    else {
-        next(createError(404));
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'get-profile-error '})
     }
 });
 

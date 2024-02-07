@@ -1,0 +1,23 @@
+{
+    "development": {
+        "username": "kamil",
+        "password": "kamil",
+        "database": "tsfhfansite",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": "kamil",
+        "password": "kamil",
+        "database": "tsfhfansite",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "kamil",
+        "password": "kamil",
+        "database": "tsfhfansite",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}

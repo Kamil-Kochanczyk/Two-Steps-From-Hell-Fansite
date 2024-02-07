@@ -92,7 +92,7 @@ async function logOut() {
         const responseData = await response.json();
 
         if (responseData.error) {
-            throw responseData.error;
+            throw new Error(responseData.error);
         }
 
         return responseData;
@@ -118,10 +118,10 @@ window.onload = () => {
             const clickedDiv = e.target.matches("#avatar-container");
         
             if (!clickedImg && !clickedFa && !clickedDiv) {
-                const navDropdown = document.getElementById("nav-dropdown-content");
+                const navDropdownContent = document.getElementById("nav-dropdown-content");
         
-                if (navDropdown.classList.contains("show-block")) {
-                    navDropdown.classList.remove("show-block");
+                if (navDropdownContent.classList.contains("show-block")) {
+                    navDropdownContent.classList.remove("show-block");
                 }
             }
         }
@@ -129,8 +129,13 @@ window.onload = () => {
         const logOutButton = document.getElementById("log-out");
 
         logOutButton.addEventListener("click", async () => {
-            const responseData = await logOut();
-            console.table(responseData);
+            try {
+                const responseData = await logOut();
+                console.table(responseData);
+            }
+            catch (error) {
+                console.error(error);
+            }
         })
     }
 
