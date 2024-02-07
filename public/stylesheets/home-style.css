@@ -6,7 +6,7 @@
 #main-header-image {
     width: 100%;
     max-width: 1920px;
-    opacity: 0.9;
+    opacity: 0.66;
 }
 
 #main-header-titles {
@@ -40,7 +40,7 @@ main {
 }
 
 #about-tsfh {
-    background-image: url(../Images/fire-1.jpg);
+    background-image: url(../images/fire-1.jpg);
     background-size: cover;
     background-color: black;
 }
@@ -77,7 +77,7 @@ main {
 }
 
 #tsfh-live {
-    background-image: url(../Images/fire-2.jpg);
+    background-image: url(../images/fire-2.jpg);
     background-position: center;
     background-color: #252927;
 }
@@ -123,7 +123,7 @@ main {
 }
 
 #recent-music {
-    background-image: url(../Images/fire-3.jpg);
+    background-image: url(../images/fire-3.jpg);
     background-color: #1f303c;
 }
 
