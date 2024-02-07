@@ -118,8 +118,10 @@ router.get('/profile/:username', async (req, res, next) => {
         if (exists) {
             const user = await UsersDB.getOneUser(paramUsername);
             const activeUser = await ActiveUser.get();
+
             const areTheSame = false;
             // const areTheSame = JSON.stringify(user) === JSON.stringify(activeUser);
+            
             const subpageDataArg = {
                 username: user.username,
                 email: user.email,
