@@ -1,0 +1,50 @@
+main {
+    width: 95%;
+}
+
+h1 {
+    text-align: center;
+}
+
+main > hr {
+    border: 2px solid #5d5d5d;
+}
+
+article {
+    width: 95%;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #474747;
+    border-radius: 15px;
+    font-size: larger;
+    background-color: #171327;
+}
+
+article > h2:first-child {
+    margin-top: 0;
+}
+
+article > hr {
+    border: 1px solid #474747;
+}
+
+main a {
+    color: #358dcb;
+    text-decoration: none;
+}
+
+main a:hover {
+    color: #00b270;
+}
+
+.cover {
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 375px) {
+    .cover {
+        width: 100%;
+    }
+}
