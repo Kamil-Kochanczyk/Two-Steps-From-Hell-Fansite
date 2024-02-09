@@ -1,6 +1,5 @@
 main {
     width: 95%;
-    margin: 0 auto;
 }
 
 h1 {
@@ -80,5 +79,15 @@ h1 {
     
     .gallery-column {
         flex: 100%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #album-gallery {
+        width: 100%;
+    }
+
+    .gallery-column > .album-cover-container {
+        font-size: 5vw;
     }
 }

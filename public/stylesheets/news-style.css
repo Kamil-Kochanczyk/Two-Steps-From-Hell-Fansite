@@ -1,6 +1,5 @@
 main {
     width: 95%;
-    margin: 0 auto;
 }
 
 h1 {
@@ -42,4 +41,10 @@ main a:hover {
     display: block;
     width: 250px;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 375px) {
+    .cover {
+        width: 100%;
+    }
 }

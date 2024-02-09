@@ -5,7 +5,8 @@
 
 #main-header-image {
     width: 100%;
-    opacity: 0.9;
+    max-width: 1920px;
+    opacity: 0.66;
 }
 
 #main-header-titles {
@@ -25,7 +26,7 @@ main {
 }
 
 .main-page-section {
-    padding-bottom: 30px;
+    padding: 10px 10px 30px 10px;
     margin: 50px;
     border: 2px solid #474747;
     border-radius: 25px;
@@ -39,7 +40,7 @@ main {
 }
 
 #about-tsfh {
-    background-image: url(../Images/fire-1.jpg);
+    background-image: url(../images/fire-1.jpg);
     background-size: cover;
     background-color: black;
 }
@@ -68,6 +69,7 @@ main {
 }
 
 #tsfh-description-container > blockquote {
+    margin: 0;
     padding: 0px 50px;
     font-weight: bold;
     font-size: 1.33em;
@@ -75,7 +77,7 @@ main {
 }
 
 #tsfh-live {
-    background-image: url(../Images/fire-2.jpg);
+    background-image: url(../images/fire-2.jpg);
     background-position: center;
     background-color: #252927;
 }
@@ -83,12 +85,13 @@ main {
 #tsfh-live-gallery {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 30px;
-    box-shadow: 0 0 20px -7px white;
+    justify-content: center;
 }
 
 #tsfh-live-gallery > img {
-    width: 50%;
+    width: 47%;
+    margin: 10px;
+    border: 1px solid #777777;
 }
 
 #tsfh-live-album {
@@ -102,7 +105,7 @@ main {
 }
 
 #tsfh-live-album > img {
-    width: 25%;
+    width: 225px;
 }
 
 #tsfh-live-album > a {
@@ -120,7 +123,7 @@ main {
 }
 
 #recent-music {
-    background-image: url(../Images/fire-3.jpg);
+    background-image: url(../images/fire-3.jpg);
     background-color: #1f303c;
 }
 
@@ -130,10 +133,16 @@ main {
 }
 
 iframe {
-    width: 550px;
-    height: 325px;
+    width: 45%;
+    aspect-ratio: 16 / 9;
     border: none;
     box-shadow: 0 0 20px -3px #797979;
+}
+
+@media screen and (min-width: 1920px) {
+    #main-header-titles {
+        font-size: 68px;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -146,37 +155,77 @@ iframe {
         width: auto;
     }
 
+    #tb-np-container {
+        flex-direction: row !important;
+    }
+
+    #tb-np-container > img {
+        width: 33%;
+    }
+
     #tsfh-live-gallery > img {
-        width: 100%;
-    }
-
-    #tsfh-live-album > img {
-        width: 50%;
+        width: 75%;
+        margin: 10px 0;
     }
 }
 
-@media screen and (min-width: 750px) and (max-width: 1350px) {
-    #yt-container {
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        height: 685px;
-    }
-}
-
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 750px) {    
     .main-page-section {
-        margin: 25px;
+        margin: 20px;
+        padding: 10px;
+        font-size: smaller;
     }
-    
+
+    #tsfh-description-container > blockquote {
+        margin: 0;
+        padding: 10px;
+    }
+
+    #tsfh-live-gallery > img {
+        width: 85%;
+    }
+
+    #tsfh-live-album > a {
+        margin-bottom: 20px;
+    }
+
     #yt-container {
         flex-direction: column;
         align-items: center;
-        height: 500px;
     }
 
     iframe {
-        width: 350px;
-        height: 225px;
+        width: 80%;
+        margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #main-header-titles {
+        font-size: 3.43vw;
+    }
+
+    .main-page-section > h3 {
+        font-size: 2em;
+        padding: 24px 0px;
+    }
+
+    #tsfh-live-album > img {
+        width: 66%;
+        max-width: 225px;
+    }
+
+    iframe {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .main-page-section {
+        margin: 10px;
+    }
+
+    #tsfh-live-gallery > img {
+        width: 95%;
     }
 }

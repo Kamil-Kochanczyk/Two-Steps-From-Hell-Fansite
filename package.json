@@ -1,0 +1,25 @@
+{
+    "name": "two-steps-from-hell-fansite",
+    "version": "0.0.0",
+    "private": true,
+    "description": "two steps from hell fansite",
+    "scripts": {
+        "start": "nodemon ./bin/www.js"
+    },
+    "author": "Kamil Kochańczyk",
+    "license": "ISC",
+    "nodemonConfig": {
+        "ext": "js,css,ejs"
+    },
+    "dependencies": {
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "ejs": "~2.6.1",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "morgan": "~1.9.1",
+        "mysql2": "^3.9.1",
+        "nodemon": "^3.0.3",
+        "sequelize": "^6.36.0"
+    }
+}
