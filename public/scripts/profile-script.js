@@ -298,13 +298,13 @@ function initializeDeleteAccount() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                 });
-
+        
                 if (!response.ok) {
                     throw new Error(`HTTP error. Status: ${response.status}`);
                 }
-
+        
                 const responseData = await response.json();
-
+        
                 if (responseData.error) {
                     throw new Error(responseData.error);
                 }

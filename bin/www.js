@@ -1,5 +1,20 @@
 #!/usr/bin/env node
 
+const UsersDB = require('../apis/users-db');
+const CommentsDB = require('../apis/comments-db');
+const VotingDB = require('../apis/voting-db');
+const ActiveUser = require('../apis/active-user');
+
+const apis = [UsersDB, CommentsDB, VotingDB, ActiveUser];
+
+apis.forEach(async (api) => {
+    const isInitialized = await api.isInitialized();
+
+    if (!isInitialized) {
+        await api.initialize();
+    }
+});
+
 const app = require('../app');
 const debug = require('debug')('two-steps-from-hell-fansite:server');
 const http = require('http');

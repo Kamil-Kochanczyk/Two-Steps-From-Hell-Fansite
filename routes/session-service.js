@@ -8,8 +8,8 @@ router.post('/log-in', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const exists = await UsersDB.exists(req.models.UsersDB, username);
-        const passwordCorrect = await UsersDB.passwordCorrect(req.models.UsersDB, username, password);
+        const exists = await UsersDB.exists(username);
+        const passwordCorrect = await UsersDB.passwordCorrect(username, password);
 
         if (!exists) {
             res.json({ error: 'username-not-found' });
@@ -18,8 +18,8 @@ router.post('/log-in', async (req, res) => {
             res.json({ error: 'incorrect-password' });
         }
         else {
-            const activeUser = await UsersDB.getOneUser(req.models.UsersDB, username);
-            await ActiveUser.set(req.models.ActiveUser, activeUser);
+            const activeUser = await UsersDB.getOneUser(username);
+            await ActiveUser.set(activeUser);
             
             const activeUserUsername = activeUser.username;
             const activeUserEmail = activeUser.email;
@@ -32,9 +32,28 @@ router.post('/log-in', async (req, res) => {
     }
 });
 
+router.get('/user', async (req, res) => {
+    try {
+        const isEmpty = await ActiveUser.isEmpty();
+
+        if (!isEmpty) {
+            const username = await ActiveUser.getUsername();
+            const email = await ActiveUser.getEmail();
+            res.json({ username, email });
+        }
+        else {
+            res.json({ isEmpty: true });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.json({ error: 'session-service-user-error' });
+    }
+});
+
 router.get('/username', async (req, res) => {
     try {
-        const activeUserUsername = await ActiveUser.getUsername(req.models.ActiveUser);
+        const activeUserUsername = await ActiveUser.getUsername();
         res.json({ username: activeUserUsername });
     }
     catch (error) {
@@ -45,7 +64,7 @@ router.get('/username', async (req, res) => {
 
 router.get('/email', async (req, res) => {
     try {
-        const activeUserEmail = await ActiveUser.getEmail(req.models.ActiveUser);
+        const activeUserEmail = await ActiveUser.getEmail();
         res.json({ email: activeUserEmail });
     }
     catch (error) {
@@ -56,7 +75,7 @@ router.get('/email', async (req, res) => {
 
 router.get('/password', async (req, res) => {
     try {
-        const activeUserPassword = await ActiveUser.getPassword(req.models.ActiveUser);
+        const activeUserPassword = await ActiveUser.getPassword();
         res.json({ password: activeUserPassword });
     }
     catch (error) {
@@ -66,33 +85,33 @@ router.get('/password', async (req, res) => {
 });
 
 router.post('/edit/:attribute', async (req, res) => {
-    const activeUser = await ActiveUser.get(req.models.ActiveUser);
+    const activeUser = await ActiveUser.get();
     const attribute = req.params.attribute;
     const newValue = req.body.newValue;
     let returnedValue;
 
     try {
         if (attribute === 'username') {
-            const userWithThisUsername = await UsersDB.getOneUser(req.models.UsersDB, newValue);
+            const userWithThisUsername = await UsersDB.getOneUser(newValue);
             const usernameAlreadyExists = userWithThisUsername !== null;
 
             if (usernameAlreadyExists && JSON.stringify(userWithThisUsername) !== JSON.stringify(activeUser)) {
                 res.json({ usernameAlreadyTaken: true });
             }
             else {
-                returnedValue = await UsersDB.setUsername(req.models.UsersDB, activeUser.username, newValue);
-                await ActiveUser.set(req.models.ActiveUser, (await UsersDB.getOneUser(req.models.UsersDB, returnedValue)));
+                returnedValue = await UsersDB.setUsername(activeUser.username, newValue);
+                await ActiveUser.set(await UsersDB.getOneUser(returnedValue));
                 res.json({ newUsername: returnedValue });
             }
         }
         else if (attribute === 'email') {
-            returnedValue = await UsersDB.setEmail(req.models.UsersDB, activeUser.username, newValue);
-            await ActiveUser.set(req.models.ActiveUser, (await UsersDB.getOneUser(req.models.UsersDB, activeUser.username)));
+            returnedValue = await UsersDB.setEmail(activeUser.username, newValue);
+            await ActiveUser.set(await UsersDB.getOneUser(activeUser.username));
             res.json({ newEmail: returnedValue });
         }
         else if (attribute === 'password') {
-            returnedValue = await UsersDB.setPassword(req.models.UsersDB, activeUser.username, newValue);
-            await ActiveUser.set(req.models.ActiveUser, (await UsersDB.getOneUser(req.models.UsersDB, activeUser.username)));
+            returnedValue = await UsersDB.setPassword(activeUser.username, newValue);
+            await ActiveUser.set(await UsersDB.getOneUser(activeUser.username));
             res.json({ newPassword: returnedValue });
         }
         else {
@@ -107,11 +126,11 @@ router.post('/edit/:attribute', async (req, res) => {
 
 router.post('/delete', async (req, res) => {
     try {
-        const activeUserUsername = await ActiveUser.getUsername(req.models.ActiveUser);
-        const deletedUsers = await UsersDB.deleteOneUser(req.models.UsersDB, activeUserUsername);
+        const activeUserUsername = await ActiveUser.getUsername();
+        const deletedUsers = await UsersDB.deleteOneUser(activeUserUsername);
 
         if (deletedUsers === 1) {
-            await ActiveUser.clear(req.models.ActiveUser);
+            await ActiveUser.set({});
         }
         else {
             throw new Error('User could not be deleted');
@@ -127,7 +146,7 @@ router.post('/delete', async (req, res) => {
 
 router.post('/log-out', async (req, res) => {
     try {
-        await ActiveUser.clear(req.models.ActiveUser);
+        await ActiveUser.set({});
         res.json({});
     }
     catch (error) {

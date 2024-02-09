@@ -2,17 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 const UsersDB = require('../apis/users-db');
+const VotingDB = require('../apis/voting-db');
 const ActiveUser = require('../apis/active-user');
 
 router.post('/submit', async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-        const exists = await UsersDB.exists(req.models.UsersDB, username);
+        const exists = await UsersDB.exists(username);
 
         if (!exists) {
-            await UsersDB.addUser(req.models.UsersDB, { username, email, password });
-            await ActiveUser.set(req.models.ActiveUser, { username, email, password });
+            await UsersDB.addUser({ username, email, password });
+            await VotingDB.initializeEntry(username);
+            await ActiveUser.set({ username, email, password });
             res.json({ username, email });
         }
         else {
