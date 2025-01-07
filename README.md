@@ -1,2 +1,2 @@
-# Two-Steps-From-Hell-Fansite
-A node/express app.
+# Two Steps From Hell Fansite
+This is a node/express app. It is basically a website about the former music company called Two Steps From Hell. On this website users can "sign up", "log in", "log out" and read some stuff. It comes in two versions. Default version uses json files to store data and contains a simple (but unifinished) comment section. Other version uses an sql database to store data and has no comment section. The recommended version is the default one. The other version may cause too much trouble to start working.
